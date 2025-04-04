@@ -25,6 +25,7 @@ export const createApplication = async (req, res, next) => {
         const [application] = await Application.create([{
             jobId: req.params.jobId,
             applicantId: req.user._id,
+            employerId: job.createdBy,
             message,
             resumeUrl: req.user.resumeUrl
         }], {session})
@@ -35,7 +36,7 @@ export const createApplication = async (req, res, next) => {
         await session.commitTransaction()
         await session.endSession()
 
-        res.status(201).send({
+        res.status(201).json({
             success: true,
             message: 'Application created successfully.',
             data: {
@@ -48,6 +49,33 @@ export const createApplication = async (req, res, next) => {
             await session.abortTransaction()
             await session.endSession()
         }
+        next(e)
+    }
+}
+
+export const getApplications = async (req, res, next) => {
+    try {
+        let applications;
+        if (req.user.role === 'jobseeker') {
+            applications = await Application.find({applicantId: req.user._id}).sort({createdAt: -1})
+                .populate('jobId')
+                .populate('applicantId')
+        }
+
+        if (req.user.role === 'employer') {
+            applications = await Application.find({employerId: req.user._id}).sort({createdAt: -1})
+                .populate('jobId')
+                .populate('applicantId')
+        }
+
+        res.status(200).json({
+            success: true,
+            message: 'Fetched applications successfully.',
+            data: {
+                applications,
+            }
+        })
+    } catch (e) {
         next(e)
     }
 }
