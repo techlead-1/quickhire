@@ -1,10 +1,9 @@
 import express from 'express';
+import {getAllJobs} from "../controllers/job.controller.js";
 
 const jobRouter = express.Router();
 
-jobRouter.get('/', async (req, res) => {
-    res.send('Get all jobs')
-})
+jobRouter.get('/', getAllJobs);
 
 jobRouter.get('/:id', async (req, res) => {
     res.send('Get job')
