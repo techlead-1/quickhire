@@ -94,7 +94,7 @@ export const signIn = async (req, res, next) => {
 
         let token = jwt.sign({userID: user._id, role: user.role}, JWT_SECRET, { expiresIn: EXPIRES_IN });
 
-        req.cookie('token', token, {
+        res.cookie('token', token, {
             httpOnly: true,
             secure: NODE_ENV === 'production',
             sameSite: 'Strict',
@@ -113,3 +113,19 @@ export const signIn = async (req, res, next) => {
     }
 }
 
+export const signOut = async (req, res, next) => {
+    try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // or false for dev
+            sameSite: 'Strict',
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'User logged out successfully.',
+        })
+    } catch (err) {
+        next(err);
+    }
+}
