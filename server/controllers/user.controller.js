@@ -42,3 +42,37 @@ export const updateUser = async (req, res, next) => {
         next(e);
     }
 }
+
+export const uploadUserResume = async (req, res, next) => {
+    try {
+        const resumeUrl = req.file.path;
+        req.user.resumeUrl = resumeUrl;
+        await req.user.save();
+        res.status(200).json({
+            success: true,
+            message: 'User resumed uploaded successfully.',
+            data: {
+                user: req.user
+            }
+        })
+    } catch (e) {
+        next(e);
+    }
+}
+
+export const uploadUserImage = async (req, res, next) => {
+    try {
+        const imageUrl = req.file.path;
+        req.user.imageUrl = imageUrl;
+        await req.user.save();
+        res.status(200).json({
+            success: true,
+            message: 'Image uploaded successfully.',
+            data: {
+                user: req.user
+            }
+        })
+    } catch (e) {
+        next(e);
+    }
+}
