@@ -5,7 +5,11 @@ const authMiddleware = async (req, res, next) => {
     try {
         const token = req.cookies.token
         if (!token) {
-            return res.status(401).json({success: false, message: 'No token provided.'});
+            return res.status(401).json({
+                success: false,
+                code: "AUTH_NOT_LOGGED_IN",
+                message: 'No token provided.'
+            });
         }
 
         const decodedToken = jwt.verify(token, JWT_SECRET);
@@ -13,7 +17,11 @@ const authMiddleware = async (req, res, next) => {
         let user = await User.findById(userID)
 
         if (!user) {
-            return res.status(404).json({success: false, message: 'User not found.'});
+            return res.status(404).json({
+                success: false,
+                code: "AUTH_NOT_FOUND",
+                message: 'User not found.'
+            });
         }
 
         req.user = user;
@@ -22,3 +30,5 @@ const authMiddleware = async (req, res, next) => {
         next(e);
     }
 }
+
+export default authMiddleware;
