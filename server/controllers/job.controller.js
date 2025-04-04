@@ -47,7 +47,7 @@ export const getJob = async (req, res, next) => {
 
 export const createJob = async (req, res, next) => {
     try {
-        const allowedFields = ['title', 'description', 'location', 'isRemote', 'salary', 'applicants'];
+        const allowedFields = ['title', 'description', 'location', 'isRemote', 'salary'];
 
         let jobData = {createdBy: req.user._id};
         for (let field of allowedFields) {
@@ -66,6 +66,45 @@ export const createJob = async (req, res, next) => {
         res.status(201).json({
             status: 'success',
             message: 'Created job',
+            data: {
+                job: job
+            }
+        })
+    } catch (e) {
+        next(e);
+    }
+}
+
+export const updateJob = async (req, res, next) => {
+    try {
+        let job = await Job.findById(req.params.id)
+        if (!job) {
+            let error = new Error('Job not found');
+            error.statusCode = 404;
+            throw error;
+        }
+
+        if (job.createdBy.toString() !== req.user._id) {
+            let error = new Error('Not authorized to update this job')
+            error.statusCode = 403;
+            throw error;
+        }
+
+        const allowedFields = ['title', 'description', 'location', 'isRemote', 'salary'];
+
+        let jobData = {};
+        for (let field of allowedFields) {
+            if (req.body[field] !== undefined) {
+                jobData[field] = req.body[field];
+            }
+        }
+
+        Object.assign(job, jobData)
+        await job.save()
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Updated job',
             data: {
                 job: job
             }
