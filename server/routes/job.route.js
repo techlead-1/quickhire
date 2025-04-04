@@ -1,25 +1,16 @@
 import express from 'express';
+import {createJob, deleteJob, getAllJobs, getJob, updateJob} from "../controllers/job.controller.js";
 
 const jobRouter = express.Router();
 
-jobRouter.get('/', async (req, res) => {
-    res.send('Get all jobs')
-})
+jobRouter.get('/', getAllJobs);
 
-jobRouter.get('/:id', async (req, res) => {
-    res.send('Get job')
-})
+jobRouter.get('/:id', getJob)
 
-jobRouter.post('/', async (req, res) => {
-    res.send('Create new job')
-})
+jobRouter.post('/', createJob);
 
-jobRouter.put('/:id', async (req, res) => {
-    res.send('Update job')
-})
+jobRouter.put('/:id', updateJob)
 
-jobRouter.delete('/:id', async (req, res) => {
-    res.send('Delete job')
-})
+jobRouter.delete('/:id', deleteJob);
 
 export default jobRouter

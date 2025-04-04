@@ -1,17 +1,13 @@
 import express from 'express';
+import {signIn, signOut, signUp} from "../controllers/auth.controller.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
 
 const authRouter = express.Router();
 
-authRouter.post('sign-up', async (req, res) => {
-    res.send('Sign up');
-})
+authRouter.post('sign-up', signUp)
 
-authRouter.post('sign-in', async (req, res) => {
-    res.send('Sign in');
-})
+authRouter.post('sign-in', signIn)
 
-authRouter.delete('sign-out', async (req, res) => {
-    res.send('Sign out');
-})
+authRouter.delete('sign-out', authMiddleware, signOut);
 
 export default authRouter;

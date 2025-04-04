@@ -12,14 +12,14 @@ export const signUp = async (req, res, next) => {
         const { name, email, password, role } = req.body;
 
         if (!name || !email || !password || !role) {
-            const error = new Error('Please ensure all required fields are provided.');
+            let error = new Error('Please ensure all required fields are provided.');
             error.statusCode = 400;
             throw error;
         }
 
         const userExists = await User.findOne({ email }).session(session);
         if (userExists) {
-            const error = new Error('User already exists');
+            let error = new Error('User already exists');
             error.statusCode = 409;
             throw error;
         }
@@ -69,3 +69,63 @@ export const signUp = async (req, res, next) => {
     }
 };
 
+export const signIn = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            let error = new Error('Please ensure all required fields are provided.');
+            error.statusCode = 400;
+            throw error;
+        }
+
+        let user = await User.findOne({email})
+        if (!user) {
+            let error = new Error(`User not found`)
+            error.statusCode = 404;
+            throw error;
+        }
+
+        let validPassword = bcrypt.compare(user.password, password);
+        if (!validPassword) {
+            let error = new Error(`Wrong email or password`);
+            error.statusCode = 401;
+            throw error;
+        }
+
+        let token = jwt.sign({userID: user._id, role: user.role}, JWT_SECRET, { expiresIn: EXPIRES_IN });
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: NODE_ENV === 'production',
+            sameSite: 'Strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        })
+
+        res.status(200).json({
+            success: true,
+            message: 'User logged in successfully.',
+            data: {
+                user: user,
+            }
+        })
+    } catch (e) {
+        next(e);
+    }
+}
+
+export const signOut = async (req, res, next) => {
+    try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // or false for dev
+            sameSite: 'Strict',
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'User logged out successfully.',
+        })
+    } catch (err) {
+        next(err);
+    }
+}
