@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     // Employer fields
     companyName: String,
     companyWebsite: String,
-    logoUrl: String,
+    imageUrl: String,
     companyDescription: String,
 }, {timestamps: true});
 
