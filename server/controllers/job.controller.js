@@ -44,3 +44,33 @@ export const getJob = async (req, res, next) => {
         next(e);
     }
 }
+
+export const createJob = async (req, res, next) => {
+    try {
+        const allowedFields = ['title', 'description', 'location', 'isRemote', 'salary', 'applicants'];
+
+        let jobData = {createdBy: req.user._id};
+        for (let field of allowedFields) {
+            if (req.body[field] !== undefined) {
+                jobData[field] = req.body[field];
+            }
+        }
+
+        if (!jobData.title) {
+            let error = new Error('Title is required');
+            error.statusCode = 400;
+            throw error;
+        }
+
+        let job = await Job.create(jobData)
+        res.status(201).json({
+            status: 'success',
+            message: 'Created job',
+            data: {
+                job: job
+            }
+        })
+    } catch (e) {
+        next(e);
+    }
+}

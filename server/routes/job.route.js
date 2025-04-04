@@ -1,5 +1,5 @@
 import express from 'express';
-import {getAllJobs, getJob} from "../controllers/job.controller.js";
+import {createJob, getAllJobs, getJob} from "../controllers/job.controller.js";
 
 const jobRouter = express.Router();
 
@@ -7,9 +7,7 @@ jobRouter.get('/', getAllJobs);
 
 jobRouter.get('/:id', getJob)
 
-jobRouter.post('/', async (req, res) => {
-    res.send('Create new job')
-})
+jobRouter.post('/', createJob);
 
 jobRouter.put('/:id', async (req, res) => {
     res.send('Update job')
