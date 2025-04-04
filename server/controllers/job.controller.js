@@ -84,7 +84,7 @@ export const updateJob = async (req, res, next) => {
             throw error;
         }
 
-        if (job.createdBy.toString() !== req.user._id) {
+        if (job.createdBy.toString() !== req.user._id.toString()) {
             let error = new Error('Not authorized to update this job')
             error.statusCode = 403;
             throw error;
@@ -108,6 +108,32 @@ export const updateJob = async (req, res, next) => {
             data: {
                 job: job
             }
+        })
+    } catch (e) {
+        next(e);
+    }
+}
+
+export const deleteJob = async (req, res, next) => {
+    try {
+        let job = await Job.findById(req.params.id)
+        if (!job) {
+            let error = new Error('Job not found');
+            error.statusCode = 404;
+            throw error;
+        }
+
+        if (job.createdBy.toString() !== req.user._id.toString()) {
+            let error = new Error('Not authorized to update this job')
+            error.statusCode = 403;
+            throw error;
+        }
+
+        await job.deleteOne()
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Deleted job',
         })
     } catch (e) {
         next(e);

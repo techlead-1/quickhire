@@ -1,5 +1,5 @@
 import express from 'express';
-import {createJob, getAllJobs, getJob, updateJob} from "../controllers/job.controller.js";
+import {createJob, deleteJob, getAllJobs, getJob, updateJob} from "../controllers/job.controller.js";
 
 const jobRouter = express.Router();
 
@@ -11,8 +11,6 @@ jobRouter.post('/', createJob);
 
 jobRouter.put('/:id', updateJob)
 
-jobRouter.delete('/:id', async (req, res) => {
-    res.send('Delete job')
-})
+jobRouter.delete('/:id', deleteJob);
 
 export default jobRouter
