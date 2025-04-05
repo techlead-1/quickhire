@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a95748a-5ecf-4b78-9636-7d762d9f0a30" name="Changes" comment="Generated server node express" />
+    <list default="true" id="6a95748a-5ecf-4b78-9636-7d762d9f0a30" name="Changes" comment="deleted client">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +15,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;techlead-1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:techlead-1/quickhire.git&quot;,
+    &quot;accountId&quot;: &quot;2927b74c-db12-4966-ab01-b476fa05a157&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2vDJVzcnkiQcqwf3TZLW1QJbqfq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,13 +38,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "client",
     "last_opened_file_path": "/Users/ademolaadesanya/Documents/Projects/quickhire",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -49,7 +65,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743673738262</updated>
-      <workItem from="1743673739348" duration="629000" />
+      <workItem from="1743673739348" duration="12628000" />
+      <workItem from="1743761621641" duration="15341000" />
+      <workItem from="1743829809935" duration="4730000" />
     </task>
     <task id="LOCAL-00001" summary="Generated server node express">
       <option name="closed" value="true" />
@@ -59,14 +77,422 @@
       <option name="project" value="LOCAL" />
       <updated>1743674366967</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Setup root repo">
+      <option name="closed" value="true" />
+      <created>1743674377560</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743674377560</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Generated React app with vite for client">
+      <option name="closed" value="true" />
+      <created>1743674568673</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743674568673</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Deleted a readme in client">
+      <option name="closed" value="true" />
+      <created>1743674606174</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743674606174</updated>
+    </task>
+    <task id="LOCAL-00005" summary="setup the express js server">
+      <option name="closed" value="true" />
+      <created>1743674857723</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743674857723</updated>
+    </task>
+    <task id="LOCAL-00006" summary="install dotenv package">
+      <option name="closed" value="true" />
+      <created>1743689054503</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743689054503</updated>
+    </task>
+    <task id="LOCAL-00007" summary="git ignore updated for server">
+      <option name="closed" value="true" />
+      <created>1743689079782</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743689079782</updated>
+    </task>
+    <task id="LOCAL-00008" summary="environment config setup">
+      <option name="closed" value="true" />
+      <created>1743689098263</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1743689098264</updated>
+    </task>
+    <task id="LOCAL-00009" summary="installed mongodb and mongoose">
+      <option name="closed" value="true" />
+      <created>1743690794281</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743690794281</updated>
+    </task>
+    <task id="LOCAL-00010" summary="export DB URI in environments">
+      <option name="closed" value="true" />
+      <created>1743690851165</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743690851165</updated>
+    </task>
+    <task id="LOCAL-00011" summary="database connection logic">
+      <option name="closed" value="true" />
+      <created>1743690860756</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743690860756</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Created user models">
+      <option name="closed" value="true" />
+      <created>1743691997397</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743691997397</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Created job models">
+      <option name="closed" value="true" />
+      <created>1743692006028</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1743692006028</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Created application model">
+      <option name="closed" value="true" />
+      <created>1743692014960</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1743692014960</updated>
+    </task>
+    <task id="LOCAL-00015" summary="setup auth routes">
+      <option name="closed" value="true" />
+      <created>1743694538542</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1743694538542</updated>
+    </task>
+    <task id="LOCAL-00016" summary="setup user routes">
+      <option name="closed" value="true" />
+      <created>1743694550416</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1743694550416</updated>
+    </task>
+    <task id="LOCAL-00017" summary="setup job routes">
+      <option name="closed" value="true" />
+      <created>1743694556331</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1743694556331</updated>
+    </task>
+    <task id="LOCAL-00018" summary="setup application routes">
+      <option name="closed" value="true" />
+      <created>1743694563684</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1743694563684</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Error and other middlewares setup">
+      <option name="closed" value="true" />
+      <created>1743698053785</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1743698053785</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Installed json web token and bcrypt packages">
+      <option name="closed" value="true" />
+      <created>1743698129552</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1743698129552</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Signup method created">
+      <option name="closed" value="true" />
+      <created>1743701992085</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1743701992085</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Signup method created">
+      <option name="closed" value="true" />
+      <created>1743702014618</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1743702014618</updated>
+    </task>
+    <task id="LOCAL-00023" summary="sign in method">
+      <option name="closed" value="true" />
+      <created>1743762053874</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1743762053874</updated>
+    </task>
+    <task id="LOCAL-00024" summary="sign out method">
+      <option name="closed" value="true" />
+      <created>1743762287788</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1743762287788</updated>
+    </task>
+    <task id="LOCAL-00025" summary="authorization middleware">
+      <option name="closed" value="true" />
+      <created>1743762812107</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1743762812107</updated>
+    </task>
+    <task id="LOCAL-00026" summary="AUTH custom code">
+      <option name="closed" value="true" />
+      <created>1743763221181</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1743763221181</updated>
+    </task>
+    <task id="LOCAL-00027" summary="added auth middleware to auth routes">
+      <option name="closed" value="true" />
+      <created>1743763288708</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1743763288708</updated>
+    </task>
+    <task id="LOCAL-00028" summary="get user logic">
+      <option name="closed" value="true" />
+      <created>1743764572061</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1743764572061</updated>
+    </task>
+    <task id="LOCAL-00029" summary="update user profile">
+      <option name="closed" value="true" />
+      <created>1743765148728</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1743765148728</updated>
+    </task>
+    <task id="LOCAL-00030" summary="installed new packages">
+      <option name="closed" value="true" />
+      <created>1743775248925</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775248925</updated>
+    </task>
+    <task id="LOCAL-00031" summary="new environment">
+      <option name="closed" value="true" />
+      <created>1743775278699</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775278699</updated>
+    </task>
+    <task id="LOCAL-00032" summary="clodinary config">
+      <option name="closed" value="true" />
+      <created>1743775289727</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775289727</updated>
+    </task>
+    <task id="LOCAL-00033" summary="upload cloudinary middleware">
+      <option name="closed" value="true" />
+      <created>1743775322171</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775322171</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added controller methods to routes">
+      <option name="closed" value="true" />
+      <created>1743775344018</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775344018</updated>
+    </task>
+    <task id="LOCAL-00035" summary="user controller upload resume and image methods">
+      <option name="closed" value="true" />
+      <created>1743775363090</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775363090</updated>
+    </task>
+    <task id="LOCAL-00036" summary="get all jobs">
+      <option name="closed" value="true" />
+      <created>1743775953517</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1743775953517</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Get specific job">
+      <option name="closed" value="true" />
+      <created>1743776232150</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1743776232150</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Create job">
+      <option name="closed" value="true" />
+      <created>1743776933256</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1743776933256</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Update jobs">
+      <option name="closed" value="true" />
+      <created>1743777690993</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1743777690993</updated>
+    </task>
+    <task id="LOCAL-00040" summary="delette job method and added to controller">
+      <option name="closed" value="true" />
+      <created>1743778364935</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1743778364935</updated>
+    </task>
+    <task id="LOCAL-00041" summary="create application">
+      <option name="closed" value="true" />
+      <created>1743780200237</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1743780200237</updated>
+    </task>
+    <task id="LOCAL-00042" summary="setup applications controller, routes and updated schema">
+      <option name="closed" value="true" />
+      <created>1743783315721</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1743783315721</updated>
+    </task>
+    <task id="LOCAL-00043" summary="removed unused base route">
+      <option name="closed" value="true" />
+      <created>1743830074948</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1743830074948</updated>
+    </task>
+    <task id="LOCAL-00044" summary="installed arcjet middleware">
+      <option name="closed" value="true" />
+      <created>1743841666557</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1743841666557</updated>
+    </task>
+    <task id="LOCAL-00045" summary="passed env and key for arcjet">
+      <option name="closed" value="true" />
+      <created>1743841679185</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1743841679185</updated>
+    </task>
+    <task id="LOCAL-00046" summary="setup arcjet config">
+      <option name="closed" value="true" />
+      <created>1743841691010</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1743841691010</updated>
+    </task>
+    <task id="LOCAL-00047" summary="setup arcjet middleware">
+      <option name="closed" value="true" />
+      <created>1743841700252</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1743841700252</updated>
+    </task>
+    <task id="LOCAL-00048" summary="clear up react setup">
+      <option name="closed" value="true" />
+      <created>1743843457699</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1743843457699</updated>
+    </task>
+    <task id="LOCAL-00049" summary="deleted client">
+      <option name="closed" value="true" />
+      <created>1743844301536</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1743844301536</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Generated server node express" />
-    <option name="LAST_COMMIT_MESSAGE" value="Generated server node express" />
+    <MESSAGE value="authorization middleware" />
+    <MESSAGE value="AUTH custom code" />
+    <MESSAGE value="added auth middleware to auth routes" />
+    <MESSAGE value="get user logic" />
+    <MESSAGE value="update user profile" />
+    <MESSAGE value="installed new packages" />
+    <MESSAGE value="new environment" />
+    <MESSAGE value="clodinary config" />
+    <MESSAGE value="upload cloudinary middleware" />
+    <MESSAGE value="added controller methods to routes" />
+    <MESSAGE value="user controller upload resume and image methods" />
+    <MESSAGE value="get all jobs" />
+    <MESSAGE value="Get specific job" />
+    <MESSAGE value="Create job" />
+    <MESSAGE value="Update jobs" />
+    <MESSAGE value="delette job method and added to controller" />
+    <MESSAGE value="create application" />
+    <MESSAGE value="setup applications controller, routes and updated schema" />
+    <MESSAGE value="removed unused base route" />
+    <MESSAGE value="installed arcjet middleware" />
+    <MESSAGE value="passed env and key for arcjet" />
+    <MESSAGE value="setup arcjet config" />
+    <MESSAGE value="setup arcjet middleware" />
+    <MESSAGE value="clear up react setup" />
+    <MESSAGE value="deleted client" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted client" />
   </component>
 </project>
