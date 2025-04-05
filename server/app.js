@@ -21,10 +21,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(errorMiddleware);
 
-app.get('/', (req, res) => {
-    res.send('Welcome')
-})
-
 app.listen(PORT, async (req, res) => {
     console.log(`${NODE_ENV} server is running on port: ${PORT}`);
     await connectToDatabase();
