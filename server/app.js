@@ -8,6 +8,7 @@ import userRouter from "./routes/user.route.js";
 import jobRouter from "./routes/job.route.js";
 import applicationRouter from "./routes/application.route.js";
 import authMiddleware from "./middlewares/auth.middleware.js";
+import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
 
 const app = express();
 
@@ -19,11 +20,8 @@ app.use('/api/v1/applications', authMiddleware, applicationRouter)
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(arcjetMiddleware)
 app.use(errorMiddleware);
-
-app.get('/', (req, res) => {
-    res.send('Welcome')
-})
 
 app.listen(PORT, async (req, res) => {
     console.log(`${NODE_ENV} server is running on port: ${PORT}`);
