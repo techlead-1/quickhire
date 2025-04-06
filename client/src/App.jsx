@@ -1,15 +1,13 @@
 import './App.css'
-import {BrowserRouter, Router, Route, Routes} from "react-router";
-import Home from "./pages/Home.jsx";
-import Auth from "./pages/Auth.jsx";
+import { Routes, Route } from 'react-router-dom';
+import Home from "@/pages/home/index.jsx";
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route index element={<Home />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path='/' element={<Home />} />
       </Routes>
     </>
   )

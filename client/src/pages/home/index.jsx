@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Auth = () => {
+const Index = () => {
     return (
         <div>
-            Auth
+            Home
         </div>
     );
 };
 
-export default Auth;
+export default Index;
