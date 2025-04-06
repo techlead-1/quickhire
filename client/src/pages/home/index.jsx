@@ -1,9 +1,10 @@
 import React from 'react';
+import Navbar from "./navbar.jsx";
 
 const Index = () => {
     return (
         <div>
-            Home
+            <Navbar />
         </div>
     );
 };
