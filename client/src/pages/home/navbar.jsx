@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Logo from "@/components/logo.jsx"
+import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -8,12 +10,9 @@ const Navbar = () => {
             <div className="container">
                 <div className="relative -mx-4 flex items-center justify-between">
                     <div className="w-60 max-w-full px-4">
-                        <a href="/#" className="block w-full py-5">
-                            <img
-                                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
-                                alt="logo"
-                            />
-                        </a>
+                        <NavLink to='/' className="block w-full py-5">
+                            <Logo />
+                        </NavLink>
                     </div>
                     <div className="flex w-full items-center justify-between px-4">
                         <div>
@@ -36,25 +35,25 @@ const Navbar = () => {
                                 } `}
                             >
                                 <ul className="block lg:hidden">
-                                    <ListItem NavLink="/#">Sign in</ListItem>
-                                    <ListItem NavLink="/#">Sign Up</ListItem>
+                                    <ListItem routeLink="/sign-in">Sign in</ListItem>
+                                    <ListItem routeLink="/sign-up">Sign Up</ListItem>
                                 </ul>
                             </nav>
                         </div>
                         <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
-                            <a
-                                href="/#"
+                            <NavLink
+                                to="/sign-in"
                                 className="px-7 py-3 text-base font-medium text-dark hover:text-primary"
                             >
                                 Sign in
-                            </a>
+                            </NavLink>
 
-                            <a
-                                href="/#"
+                            <NavLink
+                                to="/sign-up"
                                 className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
                             >
                                 Sign Up
-                            </a>
+                            </NavLink>
                         </div>
                     </div>
                 </div>
@@ -65,16 +64,16 @@ const Navbar = () => {
 
 export default Navbar;
 
-const ListItem = ({ children, NavLink }) => {
+const ListItem = ({ children, routeLink }) => {
     return (
         <>
             <li>
-                <a
-                    href={NavLink}
+                <NavLink
+                    to={routeLink}
                     className="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex"
                 >
                     {children}
-                </a>
+                </NavLink>
             </li>
         </>
     );
