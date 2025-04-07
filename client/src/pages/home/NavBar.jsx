@@ -30,11 +30,11 @@ const NavBar = () => {
                             <nav
                                 // :className="!navbarOpen && 'hidden' "
                                 id="navbarCollapse"
-                                className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none ${
+                                className={`lg:hidden absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-primary px-6 py-5 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none z-50 transition-all duration-200 ${
                                     !open && "hidden"
                                 } `}
                             >
-                                <ul className="block lg:hidden">
+                                <ul className="lg:hidden flex flex-col space-y-3 text-base font-medium text-white">
                                     <ListItem routeLink="/auth/sign-in">Sign in</ListItem>
                                     <ListItem routeLink="/auth/sign-up">Sign Up</ListItem>
                                 </ul>
@@ -70,7 +70,7 @@ const ListItem = ({ children, routeLink }) => {
             <li>
                 <NavLink
                     to={routeLink}
-                    className="flex py-2 text-base font-medium text-primary hover:text-dark lg:ml-12 lg:inline-flex"
+                    className="flex py-2 text-base font-medium hover:text-dark lg:ml-12 lg:inline-flex"
                 >
                     {children}
                 </NavLink>
