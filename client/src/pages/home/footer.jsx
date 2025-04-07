@@ -130,7 +130,7 @@ const Footer = () => {
                                     </a>
                                 </div>
                                 <p className="text-base text-body-color">
-                                    &copy; 2025 TailGrids
+                                    &copy; 2025 QuickHire. All rights reserved.
                                 </p>
                             </div>
                         </div>
