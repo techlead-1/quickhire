@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 
 const Hero = () => {
     return (
@@ -9,21 +10,20 @@ const Hero = () => {
                         <div className="w-full px-4 lg:w-5/12">
                             <div className="hero-content">
                                 <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-dark sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                                    Kickstart Startup Website with TailGrids
+                                    Kickstart Hiring or Job Hunting with QuickHire
                                 </h1>
                                 <p className="mb-8 max-w-[480px] text-base text-body-color">
-                                    With TailGrids, business and students thrive together.
-                                    Business can perfectly match their staffing to changing demand
-                                    throughout the dayed.
+                                    QuickHire helps startups and professionals connect faster —
+                                    whether you’re hiring talent or finding your next role.
                                 </p>
                                 <ul className="flex flex-wrap items-center">
                                     <li>
-                                        <a
-                                            href="/#"
+                                        <NavLink
+                                            to="/auth/sign-up"
                                             className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
                                         >
                                             Get Started
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 </ul>
                                 <div className="clients pt-16">

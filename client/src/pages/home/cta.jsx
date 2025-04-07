@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 const Cta = () => {
     return (
@@ -9,27 +10,26 @@ const Cta = () => {
                         <div className="flex flex-wrap items-center -mx-4">
                             <div className="w-full px-4 lg:w-1/2">
                 <span className="block mb-4 text-base font-medium text-white">
-                  Find Your Next Dream App
+                  Ready to hire or get hired?
                 </span>
                                 <h2 className="mb-6 text-3xl font-bold leading-tight text-white sm:mb-8 sm:text-[40px]/[48px] lg:mb-0">
-                                    <span className="xs:block"> Get started with </span>
-                                    <span>our free trial</span>
+                                    <span className="xs:block"> Start your journey with QuickHire — it's free. </span>
                                 </h2>
                             </div>
                             <div className="w-full px-4 lg:w-1/2">
                                 <div className="flex flex-wrap lg:justify-end">
-                                    <a
-                                        href="javascript:void(0)"
+                                    <NavLink
+                                        to="/auth/sign-up?employer"
                                         className="inline-flex py-3 my-1 mr-4 text-base font-medium transition bg-white rounded-md hover:bg-shadow-1 text-primary px-7"
                                     >
-                                        Get Pro Version
-                                    </a>
-                                    <a
-                                        href="javascript:void(0)"
+                                        Post a Job
+                                    </NavLink>
+                                    <NavLink
+                                        to="/auth/sign-up?job-seeker"
                                         className="inline-flex py-3 my-1 text-base font-medium text-white transition rounded-md bg-secondary px-7 hover:bg-opacity-90"
                                     >
-                                        Start Free Trial
-                                    </a>
+                                        Find Jobs
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>

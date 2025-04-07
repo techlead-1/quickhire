@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 const About = () => {
     return (
@@ -609,27 +610,24 @@ const About = () => {
                         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
                             <div className="mt-10 lg:mt-0">
                 <span className="block mb-4 text-lg font-semibold text-primary">
-                  Why Choose Us
+                  Why QuickHire Works
                 </span>
                                 <h2 className="mb-5 text-3xl font-bold text-dark sm:text-[40px]/[48px]">
-                                    Make your customers happy by giving services.
+                                  Find the right people. Land the right job.
                                 </h2>
                                 <p className="mb-5 text-base text-body-color">
-                                    It is a long established fact that a reader will be distracted
-                                    by the readable content of a page when looking at its layout.
-                                    The point of using Lorem Ipsum is that it has a more-or-less.
+                                  QuickHire simplifies the hiring process for startups and small teams.
+                                  Create a job post in minutes, find applicants fast, and manage applications from your dashboard.
                                 </p>
                                 <p className="mb-8 text-base text-body-color">
-                                    A domain name is one of the first steps to establishing your
-                                    brand. Secure a consistent brand image with a domain name that
-                                    matches your business.
+                                  Jobseekers? No bloat — just clean listings and one-click apply.
                                 </p>
-                                <a
-                                    href="javascript:void(0)"
+                                <NavLink
+                                    to="/auth/sign-up"
                                     className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
                                 >
                                     Get Started
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import Logo from '@/components/logo.jsx'
 
 const Footer = () => {
     return (
@@ -8,16 +10,11 @@ const Footer = () => {
                     <div className="-mx-4 flex flex-wrap">
                         <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
                             <div className="mb-10 w-full">
-                                <a href="/#" className="mb-6 inline-block max-w-[160px]">
-                                    <img
-                                        src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo.svg"
-                                        alt="logo"
-                                        className="max-w-full"
-                                    />
-                                </a>
+                                <NavLink to="/" className="mb-6 inline-block max-w-[160px]">
+                                    <Logo />
+                                </NavLink>
                                 <p className="mb-7 text-base text-body-color dark:text-dark-6">
-                                    Sed ut perspiciatis undmnis is iste natus error sit amet
-                                    voluptatem totam rem aperiam.
+                                    Helping small teams and solo builders connect with great talent, faster. Built for speed, clarity, and ease of use.
                                 </p>
                                 <p className="flex items-center text-sm font-medium text-dark">
                   <span className="mr-3 text-primary">
@@ -49,28 +46,28 @@ const Footer = () => {
                       </defs>
                     </svg>
                   </span>
-                                    <span>+012 (345) 678 99</span>
+                                    <span>+234 812 345 6789</span>
                                 </p>
                             </div>
                         </div>
 
                         <LinkGroup header="Resources">
-                            <NavLink link="/#" label="SaaS Development" />
-                            <NavLink link="/#" label="Our Products" />
-                            <NavLink link="/#" label="User Flow" />
-                            <NavLink link="/#" label="User Strategy" />
+                            <RouteLink link="/#" label="Find Talent" />
+                            <RouteLink link="/#" label="Browser Jobs" />
+                            <RouteLink link="/#" label="Help Center" />
+                            <RouteLink link="/#" label="Blog" />
                         </LinkGroup>
                         <LinkGroup header="Company">
-                            <NavLink link="/#" label="About TailGrids" />
-                            <NavLink link="/#" label="Contact & Support" />
-                            <NavLink link="/#" label="Success History" />
-                            <NavLink link="/#" label="Setting & Privacy" />
+                            <RouteLink link="/#" label="About QuickHire" />
+                            <RouteLink link="/#" label="Contact" />
+                            <RouteLink link="/#" label="Terms" />
+                            <RouteLink link="/#" label="Privacy" />
                         </LinkGroup>
                         <LinkGroup header="Quick Links">
-                            <NavLink link="/#" label="Premium Support" />
-                            <NavLink link="/#" label="Our Services" />
-                            <NavLink link="/#" label="Know Our Team" />
-                            <NavLink link="/#" label="Download App" />
+                            <RouteLink link="/auth/sign-up" label="Create Account" />
+                            <RouteLink link="/auth/sign-in" label="Sign In" />
+                            <RouteLink link="/jobs/new" label="Post a Job" />
+                            <RouteLink link="/applications" label="My Applications" />
                         </LinkGroup>
 
                         <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
@@ -217,7 +214,7 @@ const LinkGroup = ({ children, header }) => {
     );
 };
 
-const NavLink = ({ link, label }) => {
+const RouteLink = ({ link, label }) => {
     return (
         <li>
             <a

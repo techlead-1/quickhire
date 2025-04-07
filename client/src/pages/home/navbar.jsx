@@ -35,21 +35,21 @@ const Navbar = () => {
                                 } `}
                             >
                                 <ul className="block lg:hidden">
-                                    <ListItem routeLink="/sign-in">Sign in</ListItem>
-                                    <ListItem routeLink="/sign-up">Sign Up</ListItem>
+                                    <ListItem routeLink="/auth/sign-in">Sign in</ListItem>
+                                    <ListItem routeLink="/auth/sign-up">Sign Up</ListItem>
                                 </ul>
                             </nav>
                         </div>
                         <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
                             <NavLink
-                                to="/sign-in"
+                                to="/auth/sign-in"
                                 className="px-7 py-3 text-base font-medium text-dark hover:text-primary"
                             >
                                 Sign in
                             </NavLink>
 
                             <NavLink
-                                to="/sign-up"
+                                to="/auth/sign-up"
                                 className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
                             >
                                 Sign Up
