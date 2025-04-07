@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "@/components/logo.jsx"
 import {NavLink} from "react-router-dom";
 
-const Navbar = () => {
+const NavBar = () => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -23,14 +23,14 @@ const Navbar = () => {
                                     open && "navbarTogglerActive"
                                 } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
                             >
-                                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
-                                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
-                                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
+                                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
+                                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
+                                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
                             </button>
                             <nav
                                 // :className="!navbarOpen && 'hidden' "
                                 id="navbarCollapse"
-                                className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:bg-transparent ${
+                                className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none ${
                                     !open && "hidden"
                                 } `}
                             >
@@ -62,7 +62,7 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default NavBar;
 
 const ListItem = ({ children, routeLink }) => {
     return (
@@ -70,7 +70,7 @@ const ListItem = ({ children, routeLink }) => {
             <li>
                 <NavLink
                     to={routeLink}
-                    className="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex"
+                    className="flex py-2 text-base font-medium text-primary hover:text-dark lg:ml-12 lg:inline-flex"
                 >
                     {children}
                 </NavLink>

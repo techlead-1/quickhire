@@ -1,5 +1,8 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import aboutOne from "@/assets/about1.jpg"
+import aboutTwo from "@/assets/about2.jpg"
+import aboutThree from "@/assets/about3.jpg"
 
 const About = () => {
     return (
@@ -12,14 +15,14 @@ const About = () => {
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                     <div className="py-3 sm:py-4">
                                         <img
-                                            src="https://i.ibb.co/gFb3ns6/image-1.jpg"
+                                            src={aboutOne}
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
                                     </div>
                                     <div className="py-3 sm:py-4">
                                         <img
-                                            src="https://i.ibb.co/rfHFq15/image-2.jpg"
+                                            src={aboutTwo}
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
@@ -28,7 +31,7 @@ const About = () => {
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                     <div className="relative z-10 my-4">
                                         <img
-                                            src="https://i.ibb.co/9y7nYCD/image-3.jpg"
+                                            src={aboutThree}
                                             alt=""
                                             className="w-full rounded-2xl"
                                         />
