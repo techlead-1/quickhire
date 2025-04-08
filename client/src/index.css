@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=switchedoff], [data-theme=switchedoff] *));
+
 @theme {
     --color-prim: #3B82F6;
     --color-primary: teal;
