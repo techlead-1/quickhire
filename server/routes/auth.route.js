@@ -4,10 +4,10 @@ import authMiddleware from "../middlewares/auth.middleware.js";
 
 const authRouter = express.Router();
 
-authRouter.post('sign-up', signUp)
+authRouter.post('/sign-up', signUp)
 
-authRouter.post('sign-in', signIn)
+authRouter.post('/sign-in', signIn)
 
-authRouter.delete('sign-out', authMiddleware, signOut);
+authRouter.delete('/sign-out', authMiddleware, signOut);
 
 export default authRouter;
