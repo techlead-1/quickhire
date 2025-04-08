@@ -8,6 +8,7 @@ import SignUp from "@/pages/auth/SignUp.jsx";
 import Alert from "@/components/Alert.jsx";
 import {useState} from "react";
 import {useAlert} from "@/contexts/AlertContext.jsx";
+import JobsPage from "@/pages/jobs/JobsPage.jsx";
 
 function App() {
     const { alert } = useAlert()
@@ -27,6 +28,7 @@ function App() {
         <Route path='*' element={<NotFound />} />
         <Route path={'/auth/sign-in'} element={<SignIn />} />
         <Route path={'/auth/sign-up'} element={<SignUp />} />
+        <Route path={'/jobs'} element={<JobsPage />} />
       </Routes>
     </>
   )

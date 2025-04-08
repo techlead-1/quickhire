@@ -2,15 +2,78 @@ import React, { useState } from 'react';
 import {NavLink} from "react-router-dom";
 import Logo from '@/components/Logo.jsx'
 import {InputBox, SingleSelect} from "@/components/FormInputs.jsx";
+import {useAlert} from "@/contexts/AlertContext.jsx";
+import axios from "@/libs/axios.js";
+import {useNavigate}from "react-router-dom";
 
 
 const SignUp = () => {
-
-    const [selectedRole, setSelectedRole] = useState('employer');
+    const { showAlert } = useAlert();
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+        role: 'job-seeker'
+    });
+    const [saving, setSaving] = useState(false);
     const [options, setOptions] = useState([
         {id: 'employer', name: 'Employer'},
         {id: 'job-seeker', name: 'Job Seeker'},
     ])
+
+    const isValidated = () => {
+        if (!user.name || user.name.trim().length <= 3) {
+            showAlert('Full name is required and must be more than 3 characters', false);
+            return false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!user.email || user.email.length <= 3) {
+            showAlert('Email is required and must be more than 3 characters', false);
+            return false;
+        }
+
+        if (!emailRegex.test(user.email)) {
+            showAlert('Email is not valid', false);
+            return false;
+        }
+
+        if (!user.password || user.password.length <= 6) {
+            showAlert('Password is required and must be more than 6 characters', false);
+            return false;
+        }
+
+        if (!user.role || user.role.length <= 3) {
+            showAlert('Role is required', false);
+            return false;
+        }
+
+        return true;
+    }
+
+    const submitForm = async () => {
+        setSaving(true);
+
+        if (!isValidated()) {
+            setSaving(false);
+            return
+        }
+
+        try {
+            let response = await axios.post('/auth/sign-up', user);
+
+            showAlert('Account created successfully.', true);
+            setSaving(false);
+            navigate('/jobs');
+        } catch (error) {
+            let message = error?.response?.data?.message || 'Something went wrong';
+            showAlert(message, false);
+            setSaving(false);
+            console.error(error);
+        }
+
+    }
 
     return (
         <section className="bg-primary h-screen py-20 lg:py-[120px]">
@@ -27,19 +90,35 @@ const SignUp = () => {
                                 </NavLink>
                             </div>
                             <form>
-                                <InputBox type='text' name='name' placeholder='Full Name' />
-                                <InputBox type="email" name="email" placeholder="Email" />
+                                <InputBox
+                                    type='text'
+                                    name='name'
+                                    placeholder='Full Name'
+                                    value={user.name}
+                                    handleInputChange={(value) => setUser({...user, name: value})}
+                                />
+                                <InputBox
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    value={user.email}
+                                    handleInputChange={(value) => setUser({...user, email: value})}
+                                />
+                                <SingleSelect value={user.role} handleSelectChange={(value) => setUser(value)} options={options} />
                                 <InputBox
                                     type="password"
                                     name="password"
                                     placeholder="Password"
+                                    value={user.password}
+                                    handleInputChange={(value) => setUser({...user, password: value})}
                                 />
-                                <SingleSelect selectedOption={selectedRole} setSelectedOption={setSelectedRole} options={options} />
                                 <div className="mb-10 mt-10">
                                     <input
-                                        type="submit"
+                                        type="button"
                                         value="Sign Up"
                                         className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
+                                        onClick={() => submitForm()}
+                                        disabled={saving}
                                     />
                                 </div>
                             </form>
@@ -48,6 +127,7 @@ const SignUp = () => {
                                 <NavLink
                                     to="/auth/sign-in"
                                     className="text-primary hover:underline"
+                                    disabled={saving}
                                 >
                                     Sign In
                                 </NavLink>
