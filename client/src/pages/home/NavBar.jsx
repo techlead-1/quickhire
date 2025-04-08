@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "@/components/logo.jsx"
+import Logo from "@/components/Logo.jsx"
 import {NavLink} from "react-router-dom";
 
 const NavBar = () => {
