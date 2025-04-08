@@ -5,11 +5,19 @@ import Home from "@/pages/home/Index.jsx";
 import NotFound from "@/pages/NotFound.jsx";
 import SignIn from "@/pages/auth/SignIn.jsx";
 import SignUp from "@/pages/auth/SignUp.jsx";
+import Alert from "@/components/Alert.jsx";
+import {useState} from "react";
+import {useAlert} from "@/contexts/AlertContext.jsx";
 
 function App() {
+    const { alert } = useAlert()
 
   return (
     <>
+        {alert &&
+            <Alert message={alert.message} success={alert.success} />
+        }
+
       <Routes>
         <Route path='/' element={
             <Container>
