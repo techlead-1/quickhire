@@ -67,7 +67,7 @@ const SignUp = () => {
             setSaving(false);
             navigate('/jobs');
         } catch (error) {
-            let message = error?.response?.data?.message || 'Something went wrong';
+            let message = error?.response?.data?.error || 'Something went wrong';
             showAlert(message, false);
             setSaving(false);
             console.error(error);
@@ -76,7 +76,7 @@ const SignUp = () => {
     }
 
     return (
-        <section className="bg-primary h-screen py-20 lg:py-[120px]">
+        <section className="bg-primary h-screen py-20 lg:py-[120px] overflow-x-hidden">
             <div>
                 <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4">
@@ -104,7 +104,7 @@ const SignUp = () => {
                                     value={user.email}
                                     handleInputChange={(value) => setUser({...user, email: value})}
                                 />
-                                <SingleSelect value={user.role} handleSelectChange={(value) => setUser(value)} options={options} />
+                                <SingleSelect value={user.role} handleSelectChange={(value) => setUser({...user, value})} options={options} />
                                 <InputBox
                                     type="password"
                                     name="password"

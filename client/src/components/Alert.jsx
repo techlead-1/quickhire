@@ -2,10 +2,10 @@ import React from 'react';
 
 export const Alert = ({message, success = false}) => {
     return (
-        <section className="absolute w-full bg-gray-2 top-0 py-[60px] dark:bg-dark">
+        <section className="absolute w-full bg-gray-2 top-0 py-[60px] dark:bg-dark z-20">
             <div className="mx-auto px-4 sm:container">
                 <div className="flex justify-end">
-                    <div className="relative flex w-full max-w-[460px] items-center overflow-hidden rounded-lg bg-white px-5 py-[18px] shadow-1 dark:bg-dark-2 dark:shadow-box-dark">
+                    <div className="relative flex w-full max-w-[460px] items-center overflow-hidden rounded-lg bg-gray-50 px-5 py-[18px] shadow-1 dark:bg-dark-2 dark:shadow-box-dark">
                         <span className={`mr-4 flex h-[30px] w-full max-w-[30px] items-center justify-center rounded-full border ${success ? 'border-primary' : 'border-danger'}`}>
                           {success ? (
                               <svg width={16} height={16} viewBox="0 0 16 16" fill="none">
