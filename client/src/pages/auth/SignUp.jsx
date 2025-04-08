@@ -104,7 +104,7 @@ const SignUp = () => {
                                     value={user.email}
                                     handleInputChange={(value) => setUser({...user, email: value})}
                                 />
-                                <SingleSelect value={user.role} handleSelectChange={(value) => setUser({...user, value})} options={options} />
+                                <SingleSelect value={user.role} handleSelectChange={(value) => setUser({...user, role: value})} options={options} />
                                 <InputBox
                                     type="password"
                                     name="password"

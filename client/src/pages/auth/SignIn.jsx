@@ -1,9 +1,60 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import Logo from '@/components/Logo.jsx'
 import {InputBox} from "@/components/FormInputs.jsx";
+import axios from "@/libs/axios.js";
+import {useAlert} from "@/contexts/AlertContext.jsx";
+import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
+    const [user, setUser] = useState({
+        email: "",
+        password: "",
+    });
+    const [saving, setSaving] = useState(false);
+    const { showAlert } = useAlert();
+    const navigate = useNavigate();
+
+    const isValidated = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!user.email || user.email.length <= 3) {
+            showAlert('Email is required and must be more than 3 characters', false);
+            return false;
+        }
+
+        if (!emailRegex.test(user.email)) {
+            showAlert('Email is not valid', false);
+            return false;
+        }
+
+        if (!user.password || user.password.length <= 6) {
+            showAlert('Password is required and must be more than 6 characters', false);
+            return false;
+        }
+
+        return true;
+    }
+
+    const handleSubmit = async () => {
+        setSaving(true);
+
+        if (!isValidated()) {
+            setSaving(false);
+            return;
+        }
+
+        try {
+            let response = await axios.post('/auth/sign-in', user)
+            showAlert('User logged in successfully', true)
+            navigate('/jobs')
+        } catch (error) {
+            let message = error?.response?.data?.error || 'Something went wrong';
+            showAlert(message, false);
+            console.error(error);
+        } finally {
+            setSaving(false);
+        }
+    }
     return (
         <section className="bg-primary h-screen py-20 lg:py-[120px]">
             <div>
@@ -19,16 +70,19 @@ const SignIn = () => {
                                 </NavLink>
                             </div>
                             <form>
-                                <InputBox type="email" name="email" placeholder="Email" />
+                                <InputBox type="email" name="email" placeholder="Email" value={user.email} handleInputChange={(value) => setUser({...user, email: value})} />
                                 <InputBox
                                     type="password"
                                     name="password"
                                     placeholder="Password"
+                                    value={user.password} handleInputChange={(value) => setUser({...user, password: value})}
                                 />
                                 <div className="mb-10 mt-10">
                                     <input
-                                        type="submit"
+                                        type="button"
                                         value="Sign In"
+                                        onClick={handleSubmit}
+                                        disabled={saving}
                                         className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
                                     />
                                 </div>
@@ -38,6 +92,7 @@ const SignIn = () => {
                                 <NavLink
                                     to="/auth/sign-up"
                                     className="text-primary hover:underline"
+                                    disabled={saving}
                                 >
                                     Sign Up
                                 </NavLink>
