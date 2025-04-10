@@ -36,16 +36,57 @@ const EditProfile = () => {
         }
     }
 
-    const uploadImage = (value) => {
-        console.log(value)
+    const uploadImage = async (imageFile) => {
+        if (!imageFile) return
+
+        setSaving(true);
+
+        const formData = new FormData();
+        formData.append('image', imageFile);
+
+        try {
+            const response = await axios.post('/users/profile_image', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const url = response.data.data.user.imageUrl;
+            setData({...data, imageUrl: url});
+            setUser({...user, imageUrl: url});
+            showAlert('Profile image updated successfully!', true);
+        } catch (err) {
+            console.error(err);
+            const message = err?.response?.data?.error || 'Image upload failed';
+            showAlert(message, false);
+        }
     }
 
-    const uploadResume = (value) => {
-        console.log(value)
+    const uploadResume = async (resumeFile) => {
+        if (!resumeFile) return
+
+        setSaving(true);
+
+        const formData = new FormData();
+        formData.append('resume', resumeFile);
+
+        try {
+            let response = await axios.post('/users/resume', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            let url = response.data.data.user.resumeUrl;
+            setData({...data, resumeUrl: url});
+            setUser({...user, resumeUrl: url});
+            showAlert('Resume updated successfully!', true);
+        } catch (err) {
+            let message = err?.response?.data?.error || 'Something went wrong';
+            showAlert(message, false);
+        } finally {
+            setSaving(false);
+        }
     }
 
-
-    console.log(data)
     return (
         <section className="relative mx-auto max-w-[525px] lg:max-w-[700px] overflow-hidden rounded-lg bg-white px-10 py-16 text-center sm:px-12 md:px-[60px] mt-10">
                 <div className="mb-10 text-center md:mb-16">
@@ -156,7 +197,15 @@ const EditProfile = () => {
                     }
 
                     {user.role === 'job-seeker' &&
-                        <ResumeUploadInput onChange={(value) => uploadResume(value)} />
+                        <>
+                            <ResumeUploadInput onChange={(value) => uploadResume(value)} />
+                            <a
+                                href={data.resumeUrl ? data.resumeUrl : '#'}
+                                target='_blank'
+                                className='text-primary'
+                            >
+                                {data.resumeUrl ? 'Download Resume' : ''}</a>
+                        </>
                     }
 
 
@@ -177,8 +226,17 @@ const EditProfile = () => {
 export default EditProfile;
 
 const ProfileImageInput = ({ onChange, role }) => {
+    const { showAlert } = useAlert();
+    const maxSizeInBytes = 10 * 1024 * 1024;
+
     const handleChange = (e) => {
         const file = e.target.files[0];
+
+        if (file && file.size > maxSizeInBytes) {
+            showAlert('File too large! Max size is 10MB.', false);
+            return;
+        }
+
         if (file) {
             onChange(file);
         }
