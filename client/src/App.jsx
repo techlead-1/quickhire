@@ -13,6 +13,7 @@ import ShowJobs from "@/pages/jobs/ShowJobs.jsx";
 import EditProfile from "@/pages/profile/EditProfile.jsx";
 import ApplicationsPage from "@/pages/applications/ApplicationsPage.jsx";
 import ShowApplications from "@/pages/applications/ShowApplications.jsx";
+import AppLayout from "@/components/AppLayout.jsx";
 
 function App() {
     const { alert } = useAlert()
@@ -27,13 +28,13 @@ function App() {
           <Route path='/' element={<Container> <Home /> </Container>} />
           <Route path={'/auth/sign-in'} element={<SignIn />} />
           <Route path={'/auth/sign-up'} element={<SignUp />} />
-          <Route path='/profile' element={<Container> <EditProfile /> </Container>} />
-          <Route path='/jobs' element={<Container> <JobsPage /> </Container>} />
-          <Route path='/jobs/create' element={<Container> <JobsForm /> </Container>} />
-          <Route path='/jobs/edit/:id' element={<Container> <JobsForm /> </Container>} />
-          <Route path='/jobs/:id' element={<Container> <ShowJobs /> </Container>} />
-          <Route path='/applications' element={<Container> <ApplicationsPage /> </Container>} />
-          <Route path='/applications/:id' element={<Container> <ShowApplications /> </Container>} />
+          <Route path='/profile' element={<AppLayout> <EditProfile /> </AppLayout>} />
+          <Route path='/jobs' element={<AppLayout> <JobsPage /> </AppLayout>} />
+          <Route path='/jobs/create' element={<AppLayout> <JobsForm /> </AppLayout>} />
+          <Route path='/jobs/edit/:id' element={<AppLayout> <JobsForm /> </AppLayout>} />
+          <Route path='/jobs/:id' element={<AppLayout> <ShowJobs /> </AppLayout>} />
+          <Route path='/applications' element={<AppLayout> <ApplicationsPage /> </AppLayout>} />
+          <Route path='/applications/:id' element={<AppLayout> <ShowApplications /> </AppLayout>} />
           <Route path='*' element={<NotFound />} />
       </Routes>
     </>
