@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     role: {
         type: String,
-        enum: ['jobSeeker', 'employer'],
+        enum: ['job-seeker', 'employer'],
         required: true,
     },
     email: {
