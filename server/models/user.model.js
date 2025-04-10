@@ -24,18 +24,50 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minlength: 3
     },
-    location: String,
+    location: {
+        type: String,
+        trim: true,
+        default: '',
+    },
 
     // JobSeeker fields
-    bio: String,
-    skills: [String],
-    resumeUrl: String,
+    bio: {
+        type: String,
+        trim: true,
+        default: '',
+    },
+    skills: {
+        type: String,
+        trim: true,
+        default: '',
+    },
+    resumeUrl: {
+        type: String,
+        trim: true,
+        default: '',
+    },
 
     // Employer fields
-    companyName: String,
-    companyWebsite: String,
-    imageUrl: String,
-    companyDescription: String,
+    companyName: {
+        type: String,
+        trim: true,
+        default: '',
+    },
+    companyWebsite: {
+        type: String,
+        trim: true,
+        default: '',
+    },
+    imageUrl: {
+        type: String,
+        trim: true,
+        default: '',
+    },
+    companyDescription: {
+        type: String,
+        trim: true,
+        default: '',
+    },
 }, {timestamps: true});
 
 const User = mongoose.model('User', userSchema);
