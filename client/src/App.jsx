@@ -14,9 +14,18 @@ import EditProfile from "@/pages/profile/EditProfile.jsx";
 import ApplicationsPage from "@/pages/applications/ApplicationsPage.jsx";
 import ShowApplications from "@/pages/applications/ShowApplications.jsx";
 import AppLayout from "@/components/AppLayout.jsx";
+import { useAuth } from "@/contexts/AuthContext.jsx";
+import Skeleton from "@/components/Skeleton.jsx";
 
 function App() {
     const { alert } = useAlert()
+    const { loading } = useAuth()
+
+    if (loading) {
+        return (
+            <Skeleton />
+        );
+    }
 
   return (
     <>

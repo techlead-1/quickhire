@@ -3,15 +3,25 @@ import {NavLink, useNavigate} from "react-router-dom";
 import Logo from "@/components/Logo.jsx";
 import Container from "@/components/Container.jsx";
 import {useAlert} from "@/contexts/AlertContext.jsx";
+import { useAuth} from "@/contexts/AuthContext.jsx";
+import axios from '@/libs/axios.js'
 
 const AppLayout = ({children}) => {
     const [open, setOpen] = useState(false);
     const { showAlert } = useAlert();
+    const { setUser } = useAuth();
     const navigate = useNavigate();
 
-    const logoutUser = () => {
-        showAlert('Logged out', true);
-        navigate('/auth/sign-in');
+    const logoutUser = async () => {
+        try {
+            await axios.delete('/auth/sign-out')
+            showAlert('Signed out successfully', true)
+            setUser(null)
+            navigate('/auth/sign-in');
+        } catch (err) {
+            let message = err?.response?.data?.error || 'Something went wrong';
+            showAlert(message, false);
+        }
     }
     return (
         <div className="min-h-screen flex flex-col">

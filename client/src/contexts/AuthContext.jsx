@@ -6,8 +6,8 @@ import {useAlert} from "@/contexts/AlertContext.jsx";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(undefined);
+    const [loading, setLoading] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
     const {showAlert}= useAlert();
@@ -48,20 +48,20 @@ export const AuthProvider = ({ children }) => {
             );
             const isAuth = authRoutes.includes(location.pathname);
 
-            if (isProtected && !user) {
-                showAlert('You are not logged in!', false);
-                navigate("/auth/sign-in");
+            if (isAuth && user) {
+                showAlert('You are logged in!', true);
+                navigate("/jobs");
             }
 
-            if (isAuth && user) {
-                showAlert('You are already logged in!', true);
-                navigate("/jobs");
+            if (isProtected && !user) {
+                showAlert('You are logged out!', false);
+                navigate("/auth/sign-in");
             }
         }
     }, [location.pathname, user, loading]);
 
     return (
-        <AuthContext.Provider value={{ user, loading }}>
+        <AuthContext.Provider value={{ user, loading, setUser }}>
             {children}
         </AuthContext.Provider>
     )
