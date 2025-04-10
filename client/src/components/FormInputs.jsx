@@ -9,7 +9,7 @@ export const InputBox = ({ type, placeholder, name, value, handleInputChange, di
                 name={name}
                 value={value}
                 onChange={(e) => handleInputChange(e.target.value)}
-                className="w-full rounded-md border-1 border-primary border-stroke bg-transparent px-5 py-3 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none disabled:bg-gray-50"
+                className="w-full rounded-md border-1 border-primary border-stroke bg-transparent px-5 py-3 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none disabled:bg-gray-300"
                 disabled={disabled}
             />
         </div>

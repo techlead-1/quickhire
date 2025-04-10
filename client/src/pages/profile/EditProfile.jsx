@@ -32,8 +32,12 @@ const EditProfile = () => {
     return (
         <section className="relative mx-auto max-w-[525px] lg:max-w-[700px] overflow-hidden rounded-lg bg-white px-10 py-16 text-center sm:px-12 md:px-[60px] mt-10">
                 <div className="mb-10 text-center md:mb-16">
-                    <Avatar src={user.imageUrl} alt={user.name} name={user.name} size="w-70 h-70" textSize="text-8xl" />
-                    <ProfileImageInput onChange={(value) => uploadImage(value)} />
+                    <Avatar
+                        src={user.imageUrl} alt={user.name}
+                        name={user.role === 'job-seeker' ? user.name : user.companyName && user.companyName.length > 0 ? user.companyName : 'C'}
+                        size="w-70 h-70" textSize="text-8xl"
+                    />
+                    <ProfileImageInput onChange={(value) => uploadImage(value)} role={user.role}/>
                 </div>
                 <form>
                     <label className='mb-[10px] block text-base font-medium text-left text-dark dark:text-white'>
@@ -59,14 +63,18 @@ const EditProfile = () => {
                         disabled={true}
                     />
 
-                    <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
-                        Bio
-                    </label>
-                    <DefaultTextarea
-                        placeholder="Bio"
-                        value={data.bio}
-                        handleInputChange={(value) => setData({...data, bio: value})}
-                    />
+                    {user.role === 'job-seeker' &&
+                        <>
+                            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
+                                Bio
+                            </label>
+                            <DefaultTextarea
+                                placeholder="Bio"
+                                value={data.bio}
+                                handleInputChange={(value) => setData({...data, bio: value})}
+                            />
+                        </>
+                    }
 
                     <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
                         Location
@@ -79,49 +87,60 @@ const EditProfile = () => {
                         handleInputChange={(value) => setData({...data, location: value})}
                     />
 
-                    <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
-                        Skills
-                    </label>
-                    <InputBox
-                        type="text"
-                        name="skills"
-                        placeholder="Skills"
-                        value={data.skills}
-                        handleInputChange={(value) => setData({...data, skills: value})}
-                    />
+                    {user.role === 'job-seeker' &&
+                        <>
+                            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
+                                Skills
+                            </label>
+                            <InputBox
+                                type="text"
+                                name="skills"
+                                placeholder="Skills"
+                                value={data.skills}
+                                handleInputChange={(value) => setData({...data, skills: value})}
+                            />
+                        </>
+                    }
 
-                    <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
-                        Company Name
-                    </label>
-                    <InputBox
-                        type="text"
-                        name="companyName"
-                        placeholder="Company Name"
-                        value={data.companyName}
-                        handleInputChange={(value) => setData({...data, companyName: value})}
-                    />
+                    {user.role === 'employer' &&
+                        <>
+                            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
+                                Company Name
+                            </label>
+                            <InputBox
+                                type="text"
+                                name="companyName"
+                                placeholder="Company Name"
+                                value={data.companyName}
+                                handleInputChange={(value) => setData({...data, companyName: value})}
+                            />
 
-                    <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
-                        Company Description
-                    </label>
-                    <DefaultTextarea
-                        placeholder="Company Description"
-                        value={data.companyDescription}
-                        handleInputChange={(value) => setData({...data, companyDescription: value})}
-                    />
 
-                    <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
-                        Company Website
-                    </label>
-                    <InputBox
-                        type="link"
-                        name="company-website"
-                        placeholder="Company Website"
-                        value={data.companyWebsite}
-                        handleInputChange={(value) => setData({...data, companyWebsite: value})}
-                    />
+                            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
+                                Company Description
+                            </label>
+                            <DefaultTextarea
+                                placeholder="Company Description"
+                                value={data.companyDescription}
+                                handleInputChange={(value) => setData({...data, companyDescription: value})}
+                            />
 
-                    <ResumeUploadInput onChange={(value) => uploadResume(value)} />
+                            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white text-left'>
+                                Company Website
+                            </label>
+                            <InputBox
+                                type="link"
+                                name="company-website"
+                                placeholder="Company Website"
+                                value={data.companyWebsite}
+                                handleInputChange={(value) => setData({...data, companyWebsite: value})}
+                            />
+                        </>
+                    }
+
+                    {user.role === 'job-seeker' &&
+                        <ResumeUploadInput onChange={(value) => uploadResume(value)} />
+                    }
 
 
                     <div className="mb-10 mt-10">
@@ -140,7 +159,7 @@ const EditProfile = () => {
 
 export default EditProfile;
 
-const ProfileImageInput = ({ onChange }) => {
+const ProfileImageInput = ({ onChange, role }) => {
     const handleChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -154,7 +173,7 @@ const ProfileImageInput = ({ onChange }) => {
                 htmlFor="profile-picture"
                 className="block text-sm font-medium text-gray-700 mb-1"
             >
-                Upload Profile Picture
+                Upload {role === 'job-seeker' ? `Profile Picture` : 'Company Logo'}
             </label>
             <input
                 type="file"
