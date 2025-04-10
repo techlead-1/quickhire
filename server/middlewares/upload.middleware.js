@@ -8,6 +8,7 @@ const resumeStorage = new CloudinaryStorage({
     params: {
         folder: 'resumes',
         allowed_formats: ['pdf'],
+        resource_type: 'raw'
     },
 });
 

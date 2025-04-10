@@ -4,30 +4,32 @@ import Logo from '@/components/Logo.jsx'
 import {InputBox} from "@/components/FormInputs.jsx";
 import axios from "@/libs/axios.js";
 import {useAlert} from "@/contexts/AlertContext.jsx";
+import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
-    const [user, setUser] = useState({
+    const [data, setData] = useState({
         email: "",
         password: "",
     });
     const [saving, setSaving] = useState(false);
     const { showAlert } = useAlert();
+    const { setUser } = useAuth()
     const navigate = useNavigate();
 
     const isValidated = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        if (!user.email || user.email.length <= 3) {
+        if (!data.email || data.email.length <= 3) {
             showAlert('Email is required and must be more than 3 characters', false);
             return false;
         }
 
-        if (!emailRegex.test(user.email)) {
+        if (!emailRegex.test(data.email)) {
             showAlert('Email is not valid', false);
             return false;
         }
 
-        if (!user.password || user.password.length <= 6) {
+        if (!data.password || data.password.length <= 6) {
             showAlert('Password is required and must be more than 6 characters', false);
             return false;
         }
@@ -44,8 +46,9 @@ const SignIn = () => {
         }
 
         try {
-            let response = await axios.post('/auth/sign-in', user)
+            let response = await axios.post('/auth/sign-in', data)
             showAlert('User logged in successfully', true)
+            setUser(response.data.data.user)
             navigate('/jobs')
         } catch (error) {
             let message = error?.response?.data?.error || 'Something went wrong';
@@ -70,12 +73,12 @@ const SignIn = () => {
                                 </NavLink>
                             </div>
                             <form>
-                                <InputBox type="email" name="email" placeholder="Email" value={user.email} handleInputChange={(value) => setUser({...user, email: value})} />
+                                <InputBox type="email" name="email" placeholder="Email" value={data.email} handleInputChange={(value) => setData({...data, email: value})} />
                                 <InputBox
                                     type="password"
                                     name="password"
                                     placeholder="Password"
-                                    value={user.password} handleInputChange={(value) => setUser({...user, password: value})}
+                                    value={data.password} handleInputChange={(value) => setData({...data, password: value})}
                                 />
                                 <div className="mb-10 mt-10">
                                     <input

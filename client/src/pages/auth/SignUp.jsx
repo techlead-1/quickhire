@@ -5,12 +5,14 @@ import {InputBox, SingleSelect} from "@/components/FormInputs.jsx";
 import {useAlert} from "@/contexts/AlertContext.jsx";
 import axios from "@/libs/axios.js";
 import {useNavigate}from "react-router-dom";
+import {useAuth} from "@/contexts/AuthContext.jsx";
 
 
 const SignUp = () => {
     const { showAlert } = useAlert();
+    const { setUser } = useAuth();
     const navigate = useNavigate();
-    const [user, setUser] = useState({
+    const [data, setData] = useState({
         name: '',
         email: '',
         password: '',
@@ -23,28 +25,28 @@ const SignUp = () => {
     ])
 
     const isValidated = () => {
-        if (!user.name || user.name.trim().length <= 3) {
+        if (!data.name || data.name.trim().length <= 3) {
             showAlert('Full name is required and must be more than 3 characters', false);
             return false;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        if (!user.email || user.email.length <= 3) {
+        if (!data.email || data.email.length <= 3) {
             showAlert('Email is required and must be more than 3 characters', false);
             return false;
         }
 
-        if (!emailRegex.test(user.email)) {
+        if (!emailRegex.test(data.email)) {
             showAlert('Email is not valid', false);
             return false;
         }
 
-        if (!user.password || user.password.length <= 6) {
+        if (!data.password || data.password.length <= 6) {
             showAlert('Password is required and must be more than 6 characters', false);
             return false;
         }
 
-        if (!user.role || user.role.length <= 3) {
+        if (!data.role || data.role.length <= 3) {
             showAlert('Role is required', false);
             return false;
         }
@@ -61,10 +63,10 @@ const SignUp = () => {
         }
 
         try {
-            let response = await axios.post('/auth/sign-up', user);
-
+            let response = await axios.post('/auth/sign-up', data);
             showAlert('Account created successfully.', true);
             setSaving(false);
+            setUser(response.data.data.user);
             navigate('/jobs');
         } catch (error) {
             let message = error?.response?.data?.error || 'Something went wrong';
@@ -94,23 +96,23 @@ const SignUp = () => {
                                     type='text'
                                     name='name'
                                     placeholder='Full Name'
-                                    value={user.name}
-                                    handleInputChange={(value) => setUser({...user, name: value})}
+                                    value={data.name}
+                                    handleInputChange={(value) => setData({...data, name: value})}
                                 />
                                 <InputBox
                                     type="email"
                                     name="email"
                                     placeholder="Email"
-                                    value={user.email}
-                                    handleInputChange={(value) => setUser({...user, email: value})}
+                                    value={data.email}
+                                    handleInputChange={(value) => setData({...data, email: value})}
                                 />
-                                <SingleSelect value={user.role} handleSelectChange={(value) => setUser({...user, role: value})} options={options} />
+                                <SingleSelect value={data.role} handleSelectChange={(value) => setData({...data, role: value})} options={options} />
                                 <InputBox
                                     type="password"
                                     name="password"
                                     placeholder="Password"
-                                    value={user.password}
-                                    handleInputChange={(value) => setUser({...user, password: value})}
+                                    value={data.password}
+                                    handleInputChange={(value) => setData({...data, password: value})}
                                 />
                                 <div className="mb-10 mt-10">
                                     <input
