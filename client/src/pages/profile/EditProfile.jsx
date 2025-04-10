@@ -6,17 +6,34 @@ import {useAuth} from "@/contexts/AuthContext.jsx";
 import {useAlert} from "@/contexts/AlertContext.jsx";
 import Avatar from "@/components/Avatar.jsx";
 import {DefaultTextarea} from "@/components/FormInputs.jsx";
+import axios from "@/libs/axios.js";
 
 const EditProfile = () => {
-    const { user } = useAuth()
+    const { user, setUser } = useAuth()
     const { showAlert } = useAlert()
     const [data, setData] = useState(user);
     const [saving, setSaving] = useState(false);
 
-    console.log(user)
 
-    const submitForm = () => {
-        showAlert('Profile updated successfully.', true);
+    const submitForm = async () => {
+        if (!user.name || user.name.length < 3) {
+            showAlert('Name is required and must be more than 3 characters!', false);
+            return;
+        }
+
+        setSaving(true);
+
+        try {
+            let response = await axios.put('/users/me', data)
+            setData(response.data.data.user)
+            setUser(response.data.data.user)
+            showAlert('Successfully updated!', true);
+        } catch (err) {
+            let message = err?.response?.data?.error || 'Something went wrong';
+            showAlert(message, false);
+        } finally {
+            setSaving(false);
+        }
     }
 
     const uploadImage = (value) => {
