@@ -14,7 +14,7 @@ export const getUser = async (req, res, next) => {
 export const updateUser = async (req, res, next) => {
     try {
         let allowedFields = [ 'name', 'location' ]
-        if (req.user.role === 'jobseeker') {
+        if (req.user.role === 'job-seeker') {
             allowedFields = ['name', 'location', 'bio', 'skills', 'resumeUrl'];
         } else if (req.user.role === 'employer') {
             allowedFields = ['name', 'location', 'companyName', 'companyWebsite', 'logoUrl', 'companyDescription'];
