@@ -4,9 +4,9 @@ import {getUser, updateUser, uploadUserImage, uploadUserResume} from "../control
 
 const userRouter = express.Router()
 
-userRouter.get('/', getUser)
+userRouter.get('/me', getUser)
 
-userRouter.put('/', updateUser)
+userRouter.put('/me', updateUser)
 
 userRouter.post('/resume', uploadResume.single('resume'), uploadUserResume)
 
