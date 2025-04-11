@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import Avatar from "@/components/Avatar.jsx";
 import {DefaultTextarea, InputBox, SingleSelect} from "@/components/FormInputs.jsx";
 import {useNavigate} from "react-router-dom";
+import axios from "@/libs/axios.js"
+import {useAlert} from "@/contexts/AlertContext.jsx";
 
 const JobsForm = () => {
     const [job, setJob] = useState({
@@ -15,9 +16,26 @@ const JobsForm = () => {
     const [selected, setSelected] = useState('remote')
     const [saving, setSaving] = useState(false);
     const navigate = useNavigate();
+    const { showAlert } = useAlert();
 
-    const submitForm = () => {
+    const createJob = async () => {
+        if (!job.title || !job.description || !job.location || !job.salary) {
+            showAlert('All fields required', false)
+            return;
+        }
 
+        setSaving(true);
+        try {
+            const response = await axios.post('/jobs', job);
+            setJob(response.data.data.job);
+            showAlert('Job created successfully', true);
+            navigate('/jobs');
+        } catch (error) {
+            let message = error?.response?.data?.error || 'Something went wrong';
+            showAlert(message, false)
+        } finally {
+            setSaving(false);
+        }
     }
 
     return (
@@ -90,7 +108,7 @@ const JobsForm = () => {
                         type="button"
                         value="Create"
                         className="w-[48%] mt-5 cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
-                        onClick={() => submitForm()}
+                        onClick={() => createJob()}
                         disabled={saving}
                     />
                 </div>
