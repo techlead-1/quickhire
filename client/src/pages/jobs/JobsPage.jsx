@@ -28,6 +28,8 @@ const JobsPage = () => {
         fetchJobs();
     }, [])
 
+
+
     return (
         <div className="mb-20 mt-20">
             <div className="flex items-center justify-between mb-20">
@@ -56,7 +58,7 @@ const JobsPage = () => {
                                 </span>
                             )}
                         </div>
-                        <p className="text-gray-600 text-sm mb-4">{job.description}</p>
+                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{job.description}</p>
                         <div className="flex flex-wrap items-center justify-between text-sm text-gray-500">
                             <span>
                               📍 <strong className="text-gray-700">{job.location}</strong>

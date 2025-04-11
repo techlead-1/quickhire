@@ -26,6 +26,14 @@ export const getAllJobs = async (req, res, next) => {
 export const getJob = async (req, res, next) => {
     try {
         let job = await Job.findById(req.params.id)
+            .populate({
+                path: 'createdBy',
+                select: 'name companyName companyWebsite imageUrl _id'
+            })
+            .populate({
+                path: 'applicants',
+                select: 'name resume _id'
+            });
 
         if (!job) {
             let error = new Error('Job not found');

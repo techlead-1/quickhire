@@ -45,6 +45,7 @@ const EditProfile = () => {
         formData.append('image', imageFile);
 
         try {
+            showAlert('Uploading image, please wait...!', true);
             const response = await axios.post('/users/profile_image', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -70,6 +71,7 @@ const EditProfile = () => {
         formData.append('resume', resumeFile);
 
         try {
+            showAlert('Uploading resume, please wait...!', true);
             let response = await axios.post('/users/resume', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
