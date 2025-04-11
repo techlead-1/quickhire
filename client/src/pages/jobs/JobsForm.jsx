@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {DefaultTextarea, InputBox, SingleSelect} from "@/components/FormInputs.jsx";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "@/libs/axios.js"
 import {useAlert} from "@/contexts/AlertContext.jsx";
 
@@ -17,6 +17,25 @@ const JobsForm = () => {
     const [saving, setSaving] = useState(false);
     const navigate = useNavigate();
     const { showAlert } = useAlert();
+    const { id } = useParams();
+
+    const getJob = async () => {
+        try {
+            let response = await axios.get(`jobs/${id}`)
+            setJob(response.data.data.job);
+            setSelected(response.data.data.job.isRemote ? 'remote' : 'non-remote');
+        } catch (error) {
+            let message = error?.response?.data?.error || 'Something went wrong.';
+            showAlert(message, false);
+            navigate('/jobs');
+        }
+    }
+
+    useEffect(() => {
+        if (id) {
+            getJob();
+        }
+    }, [id])
 
     const createJob = async () => {
         if (!job.title || !job.description || !job.location || !job.salary) {
@@ -38,10 +57,30 @@ const JobsForm = () => {
         }
     }
 
+    const updateJob = async () => {
+        if (!job.title || !job.description || !job.location || !job.salary) {
+            showAlert('All fields required', false)
+            return;
+        }
+
+        setSaving(true);
+        try {
+            const response = await axios.put(`/jobs/${id}`, job);
+            setJob(response.data.data.job);
+            showAlert('Job updated successfully', true);
+            navigate('/jobs');
+        } catch (error) {
+            let message = error?.response?.data?.error || 'Something went wrong';
+            showAlert(message, false)
+        } finally {
+            setSaving(false);
+        }
+    }
+
     return (
         <section className="relative mx-auto max-w-[525px] lg:max-w-[700px] overflow-hidden rounded-lg bg-white px-10 py-16 text-center sm:px-12 md:px-[60px] mt-10">
             <h2 className="mb-2 text-2xl font-semibold text-dark dark:text-white">
-                Create Job
+                {id ? 'Update Job' : `Create Job`}
             </h2>
             <form>
                 <label className='mb-[10px] block text-base font-medium text-left text-dark dark:text-white'>
@@ -106,9 +145,9 @@ const JobsForm = () => {
                     />
                     <input
                         type="button"
-                        value="Create"
+                        value={id ? 'Update' : 'Create'}
                         className="w-[48%] mt-5 cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
-                        onClick={() => createJob()}
+                        onClick={id ? updateJob : createJob}
                         disabled={saving}
                     />
                 </div>
