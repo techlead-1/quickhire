@@ -29,7 +29,7 @@ const AppLayout = ({children}) => {
                 <div className="w-full">
                     <div className="relative -mx-4 flex items-center justify-between">
                         <div className="w-60 max-w-full px-4">
-                            <NavLink to='/' className="block w-full py-5">
+                            <NavLink to='/jobs' className="block w-full py-5">
                                 <Logo />
                             </NavLink>
                         </div>

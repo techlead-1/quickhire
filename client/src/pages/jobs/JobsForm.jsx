@@ -3,6 +3,7 @@ import {DefaultTextarea, InputBox, SingleSelect} from "@/components/FormInputs.j
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "@/libs/axios.js"
 import {useAlert} from "@/contexts/AlertContext.jsx";
+import {useAuth} from "@/contexts/AuthContext.jsx";
 
 const JobsForm = () => {
     const [job, setJob] = useState({
@@ -18,10 +19,16 @@ const JobsForm = () => {
     const navigate = useNavigate();
     const { showAlert } = useAlert();
     const { id } = useParams();
+    const { user } = useAuth()
 
     const getJob = async () => {
         try {
             let response = await axios.get(`jobs/${id}`)
+            if (response.data.data.job.createdBy.toString() !== user._id.toString()) {
+                showAlert('You cannot edit this job.', false)
+                navigate(`/jobs`)
+            }
+
             setJob(response.data.data.job);
             setSelected(response.data.data.job.isRemote ? 'remote' : 'non-remote');
         } catch (error) {

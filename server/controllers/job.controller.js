@@ -3,11 +3,11 @@ import Job from "../models/job.model.js";
 export const getAllJobs = async (req, res, next) => {
     try {
         let jobs;
-        if (req.user.role === 'jobseeker') {
+        if (req.user.role === 'job-seeker') {
             jobs = await Job.find().sort({createdAt: -1});
         }
 
-        if (req.user.role === 'job') {
+        if (req.user.role === 'employer') {
             jobs = await Job.find({createdBy: req.user._id}).sort({createdAt: -1});
         }
 
