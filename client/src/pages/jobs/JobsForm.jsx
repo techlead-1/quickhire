@@ -24,7 +24,7 @@ const JobsForm = () => {
     const getJob = async () => {
         try {
             let response = await axios.get(`jobs/${id}`)
-            if (response.data.data.job.createdBy.toString() !== user._id.toString()) {
+            if (response.data.data.job.createdBy._id.toString() !== user._id.toString()) {
                 showAlert('You cannot edit this job.', false)
                 navigate(`/jobs`)
             }
