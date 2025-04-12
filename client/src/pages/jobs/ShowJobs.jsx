@@ -44,6 +44,7 @@ const ShowJobs = () => {
         try {
             let response = await axios.post(`/applications/${job._id}`, {message: message})
             setJob(response.data.data.job)
+            console.log(response.data)
             setMessage('')
             showAlert('Applied to job successfully', true)
         } catch (error) {
@@ -54,9 +55,9 @@ const ShowJobs = () => {
         }
     }
 
-    const hasApplied = job.applicants.some(
+    const hasApplied = job.applicants?.some(
         (applicant) => applicant._id.toString() === user._id.toString()
-    );
+    ) || false;
 
     return (
         <div className="mb-20 mt-20">

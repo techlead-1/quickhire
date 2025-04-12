@@ -5,6 +5,6 @@ const applicationRouter = express.Router()
 
 applicationRouter.post('/:jobId', createApplication);
 
-applicationRouter.get('/job/:jobId', getApplications)
+applicationRouter.get('/', getApplications)
 
 export default applicationRouter;

@@ -44,11 +44,15 @@ export const createApplication = async (req, res, next) => {
         await session.commitTransaction()
         await session.endSession()
 
+        await job.populate({
+            path: 'applicants',
+            select: '_id name resumeUrl description'
+        });
+
         res.status(201).json({
             success: true,
             message: 'Application created successfully.',
             data: {
-                application,
                 job
             }
         })
@@ -65,16 +69,18 @@ export const createApplication = async (req, res, next) => {
 export const getApplications = async (req, res, next) => {
     try {
         let applications;
-        if (req.user.role === 'jobseeker') {
+        if (req.user.role === 'job-seeker') {
             applications = await Application.find({applicantId: req.user._id}).sort({createdAt: -1})
                 .populate('jobId')
                 .populate('applicantId')
+                .populate('employerId')
         }
 
         if (req.user.role === 'employer') {
             applications = await Application.find({employerId: req.user._id}).sort({createdAt: -1})
                 .populate('jobId')
                 .populate('applicantId')
+                .populate('employerId')
         }
 
         res.status(200).json({
