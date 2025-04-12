@@ -31,8 +31,7 @@ export const getJob = async (req, res, next) => {
                 select: 'name companyName companyWebsite imageUrl _id'
             })
             .populate({
-                path: 'applicants',
-                select: 'name resume _id'
+                path: 'applicants'
             });
 
         if (!job) {

@@ -8,6 +8,14 @@ export const createApplication = async (req, res, next) => {
 
     try {
         let job = await Job.findById(req.params.jobId)
+            .populate({
+                path: 'createdBy',
+                select: 'name companyName companyWebsite imageUrl _id'
+            })
+            .populate({
+                path: 'applicants'
+            });
+
         if (!job) {
             let error = new Error('Job not found')
             error.statusCode = 404
@@ -41,6 +49,7 @@ export const createApplication = async (req, res, next) => {
             message: 'Application created successfully.',
             data: {
                 application,
+                job
             }
         })
 
