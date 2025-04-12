@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import { BsChevronDown } from 'react-icons/bs';
 import {useAuth} from "@/contexts/AuthContext.jsx";
 import axios from '@/libs/axios.js'
@@ -59,9 +59,11 @@ const ApplicationsPage = () => {
                         className="border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition duration-300 bg-white"
                     >
                         <div className="flex items-start justify-between mb-4">
-                            <h2 className="text-xl font-semibold text-gray-800">
-                                {app.jobId?.title || 'Untitled Job'}
-                            </h2>
+                            <NavLink to={`/jobs/${app.jobId?._id}`}>
+                                <h2 className="text-xl font-semibold text-gray-800 line-clamp-1">
+                                    {app.jobId?.title || 'Untitled Job'}
+                                </h2>
+                            </NavLink>
                             <span className="text-sm text-primary border border-primary rounded-full px-3 py-1">
                                 {app.jobId?.isRemote ? 'Remote' : app.jobId?.location || 'N/A'}
                             </span>
