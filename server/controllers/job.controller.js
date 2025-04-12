@@ -1,4 +1,5 @@
 import Job from "../models/job.model.js";
+import Application from "../models/application.model.js";
 
 export const getAllJobs = async (req, res, next) => {
     try {
@@ -136,6 +137,7 @@ export const deleteJob = async (req, res, next) => {
             throw error;
         }
 
+        await Application.deleteMany({ jobId: req.params.id })
         await job.deleteOne()
 
         res.status(200).json({

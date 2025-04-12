@@ -28,7 +28,17 @@ const JobsPage = () => {
         fetchJobs();
     }, [])
 
-
+    const deleteJob = async (jobId) => {
+        try {
+            await axios.delete(`/jobs/${jobId}`)
+            let data = jobs.filter((job) => job._id !== jobId)
+            setJobs(data)
+            showAlert('Deleted job successfully', true);
+        } catch (err) {
+            const message = err?.response?.data?.error || 'Something went wrong';
+            showAlert(message, false);
+        }
+    }
 
     return (
         <div className="mb-20 mt-20">
@@ -114,7 +124,7 @@ const JobsPage = () => {
                                             </button>
                                             <button
                                                 className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-100"
-                                                onClick={() => console.log('Delete job', job._id)}
+                                                onClick={() => deleteJob(job._id)}
                                             >
                                                 Delete
                                             </button>
