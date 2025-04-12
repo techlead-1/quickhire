@@ -95,6 +95,25 @@ export const getApplications = async (req, res, next) => {
     }
 }
 
+export const getApplication = async (req, res, next) => {
+    try {
+        const application = await Application.findById(req.params.id)
+            .populate('jobId')
+            .populate('applicantId')
+            .populate('employerId')
+
+        res.status(200).json({
+            success: true,
+            message: 'Fetched application successfully.',
+            data: {
+                application,
+            }
+        })
+    } catch (e) {
+        next(e)
+    }
+}
+
 export const deleteApplication = async (req, res, next) => {
     try {
         const application = await Application.findOne({_id: req.params.id, applicantId: req.user._id}).populate('jobId')

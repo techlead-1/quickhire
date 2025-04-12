@@ -62,6 +62,17 @@ const ApplicationsPage = () => {
                             <NavLink to={`/jobs/${app.jobId?._id}`}>
                                 <h2 className="text-xl font-semibold text-gray-800 line-clamp-1">
                                     {app.jobId?.title || 'Untitled Job'}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-4 h-4 inline-block ml-1"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 13V6.75A2.25 2.25 0 0015.75 4.5H9" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 9l-6 6M9 9h6v6" />
+                                    </svg>
                                 </h2>
                             </NavLink>
                             <span className="text-sm text-primary border border-primary rounded-full px-3 py-1">
