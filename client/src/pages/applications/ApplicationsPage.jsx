@@ -31,10 +31,20 @@ const ApplicationsPage = () => {
     }, [user])
 
     const deleteApplication = async (id) => {
+        setLoading(true)
 
+        try {
+            await axios.delete(`/applications/${id}`)
+            let data = applications.filter((item) => item._id !== id)
+            setApplications(data)
+            showAlert('Successfully deleted application.', true);
+        } catch (error) {
+            let message = error?.response?.data?.message || 'Something went wrong';
+            showAlert(message, false);
+        } finally {
+            setLoading(false)
+        }
     }
-
-    console.log(applications)
 
     return (
         <div className="mb-20 mt-20">
@@ -94,6 +104,7 @@ const ApplicationsPage = () => {
                             <button
                                 className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 transition"
                                 onClick={() => navigate(`/applications/${app._id}`)}
+                                disabled={loading}
                             >
                                 View
                             </button>
@@ -102,6 +113,7 @@ const ApplicationsPage = () => {
                                 <button
                                     className="px-4 py-2 text-sm font-medium text-red-600 border border-red-600 rounded-md hover:bg-red-50 transition"
                                     onClick={() => deleteApplication(app._id)}
+                                    disabled={loading}
                                 >
                                     Delete
                                 </button>

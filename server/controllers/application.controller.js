@@ -94,3 +94,29 @@ export const getApplications = async (req, res, next) => {
         next(e)
     }
 }
+
+export const deleteApplication = async (req, res, next) => {
+    try {
+        const application = await Application.findOne({_id: req.params.id, applicantId: req.user._id}).populate('jobId')
+        if (!application) {
+            let error = new Error('Application not found')
+            error.statusCode = 404
+            throw error
+        }
+
+
+        let job = await Job.findById(application.jobId).populate('applicants')
+        if (job) {
+            job.applicants.pull(req.user._id)
+            await job.save()
+        }
+        await application.deleteOne()
+
+        res.status(200).json({
+            success: true,
+            message: 'Application deleted successfully.',
+        })
+    } catch (e) {
+        next(e)
+    }
+}
