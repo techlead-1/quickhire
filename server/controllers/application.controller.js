@@ -8,6 +8,14 @@ export const createApplication = async (req, res, next) => {
 
     try {
         let job = await Job.findById(req.params.jobId)
+            .populate({
+                path: 'createdBy',
+                select: 'name companyName companyWebsite imageUrl _id'
+            })
+            .populate({
+                path: 'applicants'
+            });
+
         if (!job) {
             let error = new Error('Job not found')
             error.statusCode = 404
@@ -36,11 +44,16 @@ export const createApplication = async (req, res, next) => {
         await session.commitTransaction()
         await session.endSession()
 
+        await job.populate({
+            path: 'applicants',
+            select: '_id name resumeUrl description'
+        });
+
         res.status(201).json({
             success: true,
             message: 'Application created successfully.',
             data: {
-                application,
+                job
             }
         })
 
@@ -56,16 +69,18 @@ export const createApplication = async (req, res, next) => {
 export const getApplications = async (req, res, next) => {
     try {
         let applications;
-        if (req.user.role === 'jobseeker') {
+        if (req.user.role === 'job-seeker') {
             applications = await Application.find({applicantId: req.user._id}).sort({createdAt: -1})
                 .populate('jobId')
                 .populate('applicantId')
+                .populate('employerId')
         }
 
         if (req.user.role === 'employer') {
             applications = await Application.find({employerId: req.user._id}).sort({createdAt: -1})
                 .populate('jobId')
                 .populate('applicantId')
+                .populate('employerId')
         }
 
         res.status(200).json({
@@ -74,6 +89,51 @@ export const getApplications = async (req, res, next) => {
             data: {
                 applications,
             }
+        })
+    } catch (e) {
+        next(e)
+    }
+}
+
+export const getApplication = async (req, res, next) => {
+    try {
+        const application = await Application.findById(req.params.id)
+            .populate('jobId')
+            .populate('applicantId')
+            .populate('employerId')
+
+        res.status(200).json({
+            success: true,
+            message: 'Fetched application successfully.',
+            data: {
+                application,
+            }
+        })
+    } catch (e) {
+        next(e)
+    }
+}
+
+export const deleteApplication = async (req, res, next) => {
+    try {
+        const application = await Application.findOne({_id: req.params.id, applicantId: req.user._id}).populate('jobId')
+        if (!application) {
+            let error = new Error('Application not found')
+            error.statusCode = 404
+            throw error
+        }
+
+
+        let job = await Job.findById(application.jobId).populate('applicants')
+        if (job) {
+            job.applicants.pull(req.user._id)
+            await job.save()
+        }
+        await application.deleteOne()
+
+        res.status(200).json({
+            success: true,
+            message: 'Application deleted successfully.',
         })
     } catch (e) {
         next(e)

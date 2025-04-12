@@ -29,7 +29,7 @@ const AppLayout = ({children}) => {
                 <div className="w-full">
                     <div className="relative -mx-4 flex items-center justify-between">
                         <div className="w-60 max-w-full px-4">
-                            <NavLink to='/' className="block w-full py-5">
+                            <NavLink to='/jobs' className="block w-full py-5">
                                 <Logo />
                             </NavLink>
                         </div>
@@ -54,9 +54,9 @@ const AppLayout = ({children}) => {
                                     } `}
                                 >
                                     <ul className="lg:hidden flex flex-col space-y-3 text-base font-medium">
-                                        <ListItem routeLink="/jobs">Jobs</ListItem>
-                                        <ListItem routeLink="/applications">Applications</ListItem>
-                                        <ListItem routeLink="/profile">Profile</ListItem>
+                                        <ListItem routeLink="/jobs" setOpen={(value) => setOpen(value)}>Jobs</ListItem>
+                                        <ListItem routeLink="/applications" setOpen={(value) => setOpen(value)}>Applications</ListItem>
+                                        <ListItem routeLink="/profile" setOpen={(value) => setOpen(value)}>Profile</ListItem>
                                         <ListItem routeLink="#" danger={true} logoutUser={logoutUser}>Logout</ListItem>
                                     </ul>
                                 </nav>
@@ -123,7 +123,7 @@ const AppLayout = ({children}) => {
 
 export default AppLayout;
 
-const ListItem = ({ children, routeLink, danger = false, logoutUser = null }) => {
+const ListItem = ({ children, routeLink, danger = false, logoutUser = null, setOpen }) => {
     return (
         <>
             <li className='border-b border-gray-200 last:border-b-0'>
@@ -145,6 +145,7 @@ const ListItem = ({ children, routeLink, danger = false, logoutUser = null }) =>
                             `flex py-2 font-medium hover:text-dark lg:ml-12 lg:inline-flex 
                             ${isActive ? 'text-primary' : `text-base`}`
                         }
+                        onClick={() => setOpen(false)}
                     >
                         {children}
                     </NavLink>
