@@ -59,6 +59,8 @@ const EditProfile = () => {
             console.error(err);
             const message = err?.response?.data?.error || 'Image upload failed';
             showAlert(message, false);
+        } finally {
+            setSaving(false);
         }
     }
 

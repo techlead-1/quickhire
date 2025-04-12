@@ -44,7 +44,6 @@ const ShowJobs = () => {
         try {
             let response = await axios.post(`/applications/${job._id}`, {message: message})
             setJob(response.data.data.job)
-            console.log(response.data)
             showAlert('Applied to job successfully', true)
         } catch (error) {
             let err = error?.response?.data?.error || 'Something went wrong';
