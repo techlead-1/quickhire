@@ -20,11 +20,6 @@ const applicationSchema = new mongoose.Schema({
     resumeUrl: {
         type: String,
         required: true,
-    },
-    status: {
-        type: String,
-        enum: ['applied', 'viewed', 'rejected'],
-        default: 'applied',
     }
 }, {timestamps: true});
 
