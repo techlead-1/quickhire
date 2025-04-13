@@ -13,12 +13,10 @@ import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
 
 const app = express();
 
-app.use(
-    cors({
-        origin: CORS_ORIGIN,
-        credentials: true,
-    })
-)
+app.use(cors({
+    origin: 'https://quickhire-kuuf.onrender.com',
+    credentials: true
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
