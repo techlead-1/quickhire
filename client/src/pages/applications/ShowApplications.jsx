@@ -102,7 +102,7 @@ const ShowApplications = () => {
                 <div>
                     <h4 className="font-medium text-gray-700 mb-1">Resume</h4>
                     <a
-                        href={application.resumeUrl}
+                        href={application.resumeUrl ? application.resumeUrl : "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline text-sm"
