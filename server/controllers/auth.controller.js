@@ -42,6 +42,11 @@ export const signUp = async (req, res, next) => {
 
         console.log("Token being sent:", token);
 
+        console.log({
+            sameSite: COOKIES_ENV === 'production' ? 'none' : 'strict',
+            secure: COOKIES_ENV === 'production'
+        });
+
         res.cookie('token', token, {
             httpOnly: true,
             secure: COOKIES_ENV === 'production',
@@ -97,6 +102,11 @@ export const signIn = async (req, res, next) => {
         let token = jwt.sign({userID: user._id, role: user.role}, JWT_SECRET, { expiresIn: EXPIRES_IN });
 
         console.log("Token being sent:", token);
+
+        console.log({
+            sameSite: COOKIES_ENV === 'production' ? 'none' : 'strict',
+            secure: COOKIES_ENV === 'production'
+        });
 
         res.cookie('token', token, {
             httpOnly: true,
