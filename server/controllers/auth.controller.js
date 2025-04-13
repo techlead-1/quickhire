@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {EXPIRES_IN, JWT_SECRET, NODE_ENV} from "../config/env.js";
+import {COOKIES_ENV, EXPIRES_IN, JWT_SECRET, NODE_ENV} from "../config/env.js";
 
 export const signUp = async (req, res, next) => {
     const session = await mongoose.startSession();
@@ -42,9 +42,8 @@ export const signUp = async (req, res, next) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            path: '/',
-            secure: true,
-            sameSite: 'none',
+            secure: COOKIES_ENV === 'production',
+            sameSite: COOKIES_ENV === 'production' ? 'None' : 'Strict',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
@@ -97,9 +96,8 @@ export const signIn = async (req, res, next) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            path: '/',
-            secure: true,
-            sameSite: 'none',
+            secure: COOKIES_ENV === 'production',
+            sameSite: COOKIES_ENV === 'production' ? 'None' : 'Strict',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         })
 
@@ -119,9 +117,8 @@ export const signOut = async (req, res, next) => {
     try {
         res.clearCookie('token', {
             httpOnly: true,
-            path: '/',
-            secure: true,
-            sameSite: 'none',
+            secure: COOKIES_ENV === 'production',
+            sameSite: COOKIES_ENV === 'production' ? 'None' : 'Strict',
         });
 
         res.status(200).json({

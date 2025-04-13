@@ -75,6 +75,8 @@ ARCJET_ENV='development'
 
 # CORS
 CORS_ORIGIN='http://localhost:5173'
+
+COOKIES_ENV = 'development'
 ```
 
 ## 📸 Screenshots

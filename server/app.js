@@ -14,7 +14,7 @@ import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
 const app = express();
 
 app.use(cors({
-    origin: 'https://quickhire-kuuf.onrender.com',
+    origin: CORS_ORIGIN,
     credentials: true
 }));
 
