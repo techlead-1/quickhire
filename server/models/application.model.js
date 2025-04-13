@@ -19,7 +19,6 @@ const applicationSchema = new mongoose.Schema({
     message: String,
     resumeUrl: {
         type: String,
-        required: true,
     }
 }, {timestamps: true});
 
