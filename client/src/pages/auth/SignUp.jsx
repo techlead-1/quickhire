@@ -82,7 +82,7 @@ const SignUp = () => {
             <div>
                 <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4">
-                        <div className="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white px-10 py-16 text-center sm:px-12 md:px-[60px]">
+                        <div className="relative mx-auto max-w-[525px] overflow-hidden bg-white px-10 py-16 text-center sm:px-12 md:px-[60px]">
                             <div className="mb-10 text-center md:mb-16">
                                 <NavLink
                                     to="/"
