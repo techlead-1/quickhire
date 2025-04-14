@@ -81,17 +81,21 @@ const SignIn = () => {
                                     value={data.password} handleInputChange={(value) => setData({...data, password: value})}
                                 />
                                 <div className="mb-10 mt-10">
-                                    <input
+                                    <button
                                         type="button"
-                                        value="Sign In"
                                         onClick={handleSubmit}
                                         disabled={saving}
                                         className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
-                                    />
+                                    >
+                                        {saving &&
+                                            <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin align-middle mr-2"></span>
+                                        }
+                                         Sign In
+                                    </button>
                                 </div>
                             </form>
                             <p className="text-base text-body-color dark:text-dark-6">
-                                <span className="pr-0.5">Not a member yet?</span>
+                            <span className="pr-0.5">Not a member yet?</span>
                                 <NavLink
                                     to="/auth/sign-up"
                                     className="text-primary hover:underline"

@@ -115,13 +115,17 @@ const SignUp = () => {
                                     handleInputChange={(value) => setData({...data, password: value})}
                                 />
                                 <div className="mb-10 mt-10">
-                                    <input
+                                    <button
                                         type="button"
-                                        value="Sign Up"
                                         className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
                                         onClick={() => submitForm()}
                                         disabled={saving}
-                                    />
+                                    >
+                                        {saving &&
+                                            <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin align-middle mr-2"></span>
+                                        }
+                                        Sign Up
+                                    </button>
                                 </div>
                             </form>
                             <p className="text-base text-body-color dark:text-dark-6">

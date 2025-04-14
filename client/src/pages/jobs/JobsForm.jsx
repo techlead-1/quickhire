@@ -150,13 +150,17 @@ const JobsForm = () => {
                         onClick={() => navigate('/jobs')}
                         disabled={saving}
                     />
-                    <input
+                    <button
                         type="button"
-                        value={id ? 'Update' : 'Create'}
                         className="w-[48%] mt-5 cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
                         onClick={id ? updateJob : createJob}
                         disabled={saving}
-                    />
+                    >
+                        {saving &&
+                            <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin align-middle mr-2"></span>
+                        }
+                        {id ? 'Update' : 'Create'}
+                    </button>
                 </div>
             </form>
         </section>

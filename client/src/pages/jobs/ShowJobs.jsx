@@ -136,6 +136,9 @@ const ShowJobs = () => {
                                 disabled={hasApplied || loading}
                                 onClick={handleSubmit}
                             >
+                                {loading &&
+                                    <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin align-middle mr-2"></span>
+                                }
                                 {hasApplied ? 'Already Applied' : 'Apply Now'}
                             </button>
                         </form>

@@ -99,7 +99,7 @@ const EditProfile = () => {
                         name={user.role === 'job-seeker' ? user.name : user.companyName && user.companyName.length > 0 ? user.companyName : 'C'}
                         size="w-70 h-70" textSize="text-8xl"
                     />
-                    <ProfileImageInput onChange={(value) => uploadImage(value)} role={user.role}/>
+                    <ProfileImageInput onChange={(value) => uploadImage(value)} role={user.role} saving={saving} />
                 </div>
                 <form>
                     <label className='mb-[10px] block text-base font-medium text-left text-dark dark:text-white'>
@@ -202,7 +202,7 @@ const EditProfile = () => {
 
                     {user.role === 'job-seeker' &&
                         <>
-                            <ResumeUploadInput onChange={(value) => uploadResume(value)} />
+                            <ResumeUploadInput onChange={(value) => uploadResume(value)} saving={saving} />
                             <a
                                 href={data.resumeUrl ? data.resumeUrl : '#'}
                                 target='_blank'
@@ -214,13 +214,17 @@ const EditProfile = () => {
 
 
                     <div className="mb-10 mt-10">
-                        <input
+                        <button
                             type="button"
-                            value="Update"
                             className="w-full mt-5 cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
                             onClick={() => submitForm()}
                             disabled={saving}
-                        />
+                        >
+                            {saving &&
+                                <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin align-middle mr-2"></span>
+                            }
+                            Update
+                        </button>
                     </div>
                 </form>
         </section>
@@ -229,7 +233,7 @@ const EditProfile = () => {
 
 export default EditProfile;
 
-const ProfileImageInput = ({ onChange, role }) => {
+const ProfileImageInput = ({ onChange, role, saving }) => {
     const { showAlert } = useAlert();
     const maxSizeInBytes = 10 * 1024 * 1024;
 
@@ -252,6 +256,9 @@ const ProfileImageInput = ({ onChange, role }) => {
                 htmlFor="profile-picture"
                 className="block text-sm font-medium text-gray-700 mb-1"
             >
+                {saving &&
+                    <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin align-middle mr-2"></span>
+                }
                 Upload {role === 'job-seeker' ? `Profile Picture` : 'Company Logo'}
             </label>
             <input
@@ -259,6 +266,7 @@ const ProfileImageInput = ({ onChange, role }) => {
                 id="profile-picture"
                 accept="image/*"
                 onChange={handleChange}
+                disabled={saving}
                 className="block w-full text-sm text-gray-500
                    file:mr-4 file:py-2 file:px-4
                    file:rounded-md file:border-0
@@ -270,7 +278,7 @@ const ProfileImageInput = ({ onChange, role }) => {
     );
 };
 
-const ResumeUploadInput = ({ onChange }) => {
+const ResumeUploadInput = ({ onChange, saving }) => {
     const handleChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -284,11 +292,15 @@ const ResumeUploadInput = ({ onChange }) => {
                 htmlFor="resume-upload"
                 className="block text-sm font-medium text-gray-700 mb-1"
             >
+                {saving &&
+                    <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin align-middle mr-2"></span>
+                }
                 Upload Resume (PDF)
             </label>
             <input
                 type="file"
                 id="resume-upload"
+                disabled={saving}
                 accept="application/pdf"
                 onChange={handleChange}
                 className="block w-full text-sm text-gray-500
