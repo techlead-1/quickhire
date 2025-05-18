@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (!loading) {
             const isProtected = protectedRoutes.some((path) =>
-                matchPath(path, location.pathname)
+                matchPath({ path, end: false }, location.pathname)
             );
             const isAuth = authRoutes.includes(location.pathname);
 
