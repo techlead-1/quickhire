@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }) => {
             const response = await axios.get('/users/me')
             setUser(response.data.data.user);
         } catch (err) {
-            console.error(err);
             setUser(null);
         } finally {
             setLoading(false);
