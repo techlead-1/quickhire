@@ -51,15 +51,6 @@ export const AuthProvider = ({ children }) => {
                 matchPath(path, location.pathname)
             );
             const isAuth = authRoutes.includes(location.pathname);
-            const isDenied = user && user.role === 'job-seeker' && employerOnlyRoutes.some((path) =>
-                matchPath(path, location.pathname)
-            );
-
-            // job seeker trying to access employer only route
-            if (isDenied) {
-                showAlert('Access denied, employer only area', false);
-                navigate('/jobs');
-            }
 
             if (isAuth && user) {
                 showAlert('You are logged in!', true);
@@ -69,6 +60,16 @@ export const AuthProvider = ({ children }) => {
             if (isProtected && !user) {
                 showAlert('You are logged out!', false);
                 navigate("/auth/sign-in");
+            }
+            
+            const isDenied = user && user.role === 'job-seeker' && employerOnlyRoutes.some((path) =>
+                matchPath(path, location.pathname)
+            );
+
+            // job seeker trying to access employer only route
+            if (isDenied) {
+                showAlert('Access denied, employer only area', false);
+                navigate('/jobs');
             }
         }
     }, [location.pathname, user, loading]);
