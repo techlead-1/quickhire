@@ -40,11 +40,13 @@ const JobsPage = () => {
         }
     }
 
+    console.log(user)
+
     return (
         <div className="mb-20 mt-20">
             <div className="flex items-center justify-between mb-20">
                 <h1 className="text-[20px] italic" >All ({jobs.length}) jobs</h1>
-                {user.role === 'employer' &&
+                {user && user.role === 'employer' &&
                     <input
                         type="button"
                         value='Create Job'
