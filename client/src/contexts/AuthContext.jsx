@@ -34,6 +34,11 @@ export const AuthProvider = ({ children }) => {
             const response = await axios.get('/users/me')
             setUser(response.data.data.user);
         } catch (err) {
+            if (err.response?.status === 401) {
+                // expected unauthenticated state, no need to alert
+            } else {
+                console.error('Unexpected error:', err);
+            }
             setUser(null);
         } finally {
             setLoading(false);
@@ -56,7 +61,7 @@ export const AuthProvider = ({ children }) => {
                 navigate("/jobs");
             }
 
-            if (isProtected && !user) {
+            if (isProtected && user == null) {
                 showAlert('You are logged out!', false);
                 navigate("/auth/sign-in");
             }

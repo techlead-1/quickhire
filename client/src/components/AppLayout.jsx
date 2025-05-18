@@ -5,11 +5,12 @@ import Container from "@/components/Container.jsx";
 import {useAlert} from "@/contexts/AlertContext.jsx";
 import { useAuth} from "@/contexts/AuthContext.jsx";
 import axios from '@/libs/axios.js'
+import Skeleton from "@/components/Skeleton.jsx";
 
 const AppLayout = ({children}) => {
     const [open, setOpen] = useState(false);
     const { showAlert } = useAlert();
-    const { setUser } = useAuth();
+    const { user, setUser } = useAuth();
     const navigate = useNavigate();
 
     const logoutUser = async () => {
@@ -23,6 +24,13 @@ const AppLayout = ({children}) => {
             showAlert(message, false);
         }
     }
+
+    if (!user) {
+        return (
+            <Skeleton />
+        );
+    }
+
     return (
         <div className="min-h-screen flex flex-col">
             <header className={`bg-gray-50 shadow-sm h-16 flex items-center px-4 md:px-6 justify-between`}>
