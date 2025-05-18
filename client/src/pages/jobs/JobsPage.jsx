@@ -40,8 +40,6 @@ const JobsPage = () => {
         }
     }
 
-    console.log(user)
-
     return (
         <div className="mb-20 mt-20">
             <div className="flex items-center justify-between mb-20">
