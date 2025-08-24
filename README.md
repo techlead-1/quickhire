@@ -8,7 +8,7 @@ QuickHire is a modern job board platform built using the MERN stack. Users can r
 - Secure Authentication using **JWT** and **cookies**
 - Post, view, edit, and delete job listings (Employers)
 - Apply to jobs with custom messages and resumes (Job Seekers)
-- Update user profiles with bio, skills, resume, and photo
+- Update user profiles with bio, skills, resume, and photo 
 - View applicants for posted jobs
 - Responsive and beautiful UI with TailwindCSS and Tailgrid UI
 - Rate limiting and bot protection via **ArcJet**
