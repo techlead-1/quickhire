@@ -15,7 +15,7 @@ QuickHire is a modern job board platform built using the MERN stack. Users can r
 - Protected routes and session management
 
 ## 🛠 Tech Stack
-
+ 
 - **Frontend**: React, TailwindCSS, Tailgrid UI
 - **Backend**: Node.js, Express, MongoDB, Mongoose
 - **Authentication**: JWT + Cookies
