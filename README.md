@@ -12,7 +12,7 @@ QuickHire is a modern job board platform built using the MERN stack. Users can r
 - View applicants for posted jobs
 - Responsive and beautiful UI with TailwindCSS and Tailgrid UI
 - Rate limiting and bot protection via **ArcJet**
-- Protected routes and session management 
+- Protected routes and session management  
 
 ## 🛠 Tech Stack
  
