@@ -1,4 +1,4 @@
- # QuickHire
+  # QuickHire
 
 QuickHire is a modern job board platform built using the MERN stack. Users can register as either **Job Seekers** or **Employers**, post or apply to job openings, update profiles with resumes and photos, and enjoy a clean, responsive interface.
 
