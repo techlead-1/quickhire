@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
         try {
             const response = await axios.get('/users/me')
-            setUser(response.data.data.user);
+            setUser(response?.data?.data?.user);
         } catch (err) {
             if (err.response?.status === 401) {
                 // expected unauthenticated state, no need to alert
