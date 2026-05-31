@@ -122,7 +122,6 @@ const EditProfile = () => {
                         placeholder="Email"
                         value={data.email}
                         handleInputChange={(value) => setData({...data, email: value})}
-                        disabled={true}
                     />
 
                     {user.role === 'job-seeker' &&
