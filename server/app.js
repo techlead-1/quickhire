@@ -13,6 +13,8 @@ import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
 
 const app = express();
 
+console.log("CORS_ORIGIN is:", process.env.CORS_ORIGIN);
+
 app.use(cors({
     origin: CORS_ORIGIN,
     credentials: true
