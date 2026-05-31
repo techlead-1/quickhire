@@ -48,7 +48,7 @@ npm install
 npm run dev
 ```
 
-### 4. Create `.env` file in the `server` directory
+### 4. Create `.env.development.local` file in the `server` directory
 
 ```env
 # NODE ENVIRONMENT
@@ -77,6 +77,13 @@ ARCJET_ENV='development'
 CORS_ORIGIN='http://localhost:5173'
 
 COOKIES_ENV = 'development'
+```
+
+### 5. Create `.env` file in the `client` directory
+
+```env
+# VITE API BASE URL
+VITE_API_BASE_URL = http://localhost:5500/api/v1
 ```
 
 ## 📸 Screenshots
