@@ -18,10 +18,10 @@ const authMiddleware = async (req, res, next) => {
         let user = await User.findById(userID)
 
         if (!user) {
-            return res.status(404).json({
+            return res.status(401).json({
                 success: false,
-                code: "AUTH_NOT_FOUND",
-                message: 'User not found.'
+                code: "AUTH_USER_DELETED",
+                message: 'User account no longer exists.'
             });
         }
 
