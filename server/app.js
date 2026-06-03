@@ -23,6 +23,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(arcjetMiddleware)
 
 // base route
 app.get('/api/v1', (req, res) => {
@@ -39,7 +40,7 @@ app.use('/api/v1/users', authMiddleware, userRouter)
 app.use('/api/v1/jobs', authMiddleware, jobRouter)
 app.use('/api/v1/applications', authMiddleware, applicationRouter)
 
-// catch all route
+// catch all
 app.use((req, res, next) => {
     res.status(404).json({
         success: false,
@@ -47,7 +48,6 @@ app.use((req, res, next) => {
     });
 });
 
-app.use(arcjetMiddleware)
 app.use(errorMiddleware);
 
 app.listen(PORT, async (req, res) => {
