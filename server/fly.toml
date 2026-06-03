@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for quickhire-connect on 2025-10-24T17:49:28Z
+# fly.toml app configuration file generated for quickhire-server on 2026-06-03T17:40:07Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'quickhire-connect'
-primary_region = 'fra'
+app = 'quickhire-server'
+primary_region = 'ams'
 
 [build]
 
