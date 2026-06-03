@@ -39,6 +39,14 @@ app.use('/api/v1/users', authMiddleware, userRouter)
 app.use('/api/v1/jobs', authMiddleware, jobRouter)
 app.use('/api/v1/applications', authMiddleware, applicationRouter)
 
+// catch all route
+app.use((req, res, next) => {
+    res.status(404).json({
+        success: false,
+        message: "The requested API endpoint does not exist."
+    });
+});
+
 app.use(arcjetMiddleware)
 app.use(errorMiddleware);
 
