@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(arcjetMiddleware)
 
 // base route
-app.get('/api/v1', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).json({
         success: true,
         message: "QuickHire API v1 is active",
