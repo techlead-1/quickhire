@@ -42,7 +42,7 @@ export const signUp = async (req, res, next) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            secure: COOKIES_ENV === 'production',
+            secure: true,
             sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
@@ -95,7 +95,7 @@ export const signIn = async (req, res, next) => {
         let token = jwt.sign({userID: user._id, role: user.role}, JWT_SECRET, { expiresIn: EXPIRES_IN });
         res.cookie('token', token, {
             httpOnly: true,
-            secure: COOKIES_ENV === 'production',
+            secure: true,
             sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         })
@@ -116,7 +116,7 @@ export const signOut = async (req, res, next) => {
     try {
         res.clearCookie('token', {
             httpOnly: true,
-            secure: COOKIES_ENV === 'production',
+            secure: true,
             sameSite: 'none',
         });
 
