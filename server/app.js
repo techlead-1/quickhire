@@ -24,6 +24,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+// base route
+app.get('/api/v1', (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: "QuickHire API v1 is active",
+        version: "1.0.0"
+    });
+});
+
+// routes for controllers
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', authMiddleware, userRouter)
 app.use('/api/v1/jobs', authMiddleware, jobRouter)
