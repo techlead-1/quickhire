@@ -109,7 +109,6 @@ This project is open-source and free to use.
 
 <p align="center">
   🔗 <a href="https://www.linkedin.com/in/mike-lead/">LinkedIn</a> &nbsp;|&nbsp;
-  🌐 <a href="https://thestartupdev.com">Website</a> &nbsp;|&nbsp;
   📧 <a href="mailto:adesanya1ademola@gmail.com">adesanya1ademola@gmail.com</a>
 </p>
 
